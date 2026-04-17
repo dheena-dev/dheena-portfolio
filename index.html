@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!-- Viewport set to device width for proper scaling -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <link rel="icon" type="image/png" sizes="any" href="./assets/logo.png">
     <title>Dheena Cembeti | Portfolio</title>
@@ -11,7 +10,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* ----- RESET & BROWSER DEFAULTS ----- */
         * {
             margin: 0;
             padding: 0;
@@ -37,10 +35,31 @@
             background: linear-gradient(135deg, #F9FAFB 0%, #F0FDF4 100%);
             color: var(--text-main);
             line-height: 1.5;
-            font-size: 1rem; /* browser default base */
+            font-size: 1rem;
+            overflow-x: hidden;
         }
 
-        /* ----- NAVIGATION (FLEXIBLE, MOBILE-FIRST) ----- */
+        /* ----- FIX CONTENT OVERFLOW ----- */
+        .profile-content p, .card p, .skill-category-card p, .edu-detail span, .exp-meta, .project-meta, .description-label, .tech-stack, .about-content p {
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            word-break: break-word;
+            max-width: 100%;
+        }
+        .profile-content {
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+        .card, .skill-category-card {
+            overflow-x: hidden;
+        }
+        #profile-bio {
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            white-space: normal;
+        }
+
+        /* ----- NAVIGATION (MOBILE-FIRST) ----- */
         nav {
             position: fixed;
             top: 0;
@@ -62,7 +81,6 @@
         nav.open {
             transform: translateX(0);
         }
-        /* Desktop: show nav by default */
         @media (min-width: 768px) {
             nav {
                 transform: translateX(0);
@@ -118,7 +136,6 @@
             cursor: pointer;
             box-shadow: var(--shadow);
             border: none;
-            transition: 0.2s;
         }
         @media (min-width: 768px) {
             .menu-toggle {
@@ -156,6 +173,7 @@
         .profile-content {
             flex: 1;
             min-width: 240px;
+            max-width: 100%;
         }
         .profile-img {
             width: min(260px, 60vw);
@@ -229,6 +247,7 @@
             transition: 0.25s;
             position: relative;
             box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+            overflow: hidden;
         }
         .card:hover, .skill-category-card:hover {
             transform: translateY(-5px);
@@ -260,6 +279,7 @@
             align-items: center;
             gap: 8px;
             color: var(--primary-dark);
+            word-break: keep-all;
         }
 
         .exp-meta, .project-meta {
@@ -274,11 +294,13 @@
             display: inline-flex;
             align-items: center;
             gap: 6px;
+            flex-wrap: wrap;
         }
         .exp-company, .exp-role, .project-title, .edu-title {
             font-weight: 700;
             margin-bottom: 0.25rem;
             font-size: 1.1rem;
+            word-break: break-word;
         }
         .exp-label, .project-label, .edu-label { font-weight: 600; margin-right: 6px; }
         .description-label {
@@ -310,8 +332,8 @@
             margin-bottom: 0.75rem;
             padding-right: 2rem;
         }
-        .edu-date { font-size: 0.85rem; color: var(--text-secondary); display: inline-flex; align-items: center; gap: 6px; }
-        .edu-detail { margin: 0.5rem 0; display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+        .edu-date { font-size: 0.85rem; color: var(--text-secondary); display: inline-flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+        .edu-detail { margin: 0.5rem 0; display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; word-break: break-word; }
         .edu-detail i { width: 18px; color: var(--primary); font-size: 0.9rem; }
 
         /* Forms */
@@ -426,7 +448,6 @@
             box-shadow: 0 0 0 3px white, 0 0 0 6px var(--primary-light);
         }
 
-        /* Responsive extras */
         @media (max-width: 640px) {
             section { padding: 3rem 1.5rem; }
             .profile-card { gap: 1.5rem; }
@@ -462,9 +483,9 @@
     <section id="home" class="hero">
         <div class="profile-card">
             <div class="profile-content">
-                <h1 style="font-size: clamp(2rem, 8vw, 3rem);">Dheena Cembeti</h1>
-                <div style="font-size: clamp(1.2rem, 4vw, 1.6rem); font-weight: 700;"><span style="background: linear-gradient(135deg, var(--primary), var(--primary-dark)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">Java</span> Fullstack Developer</div>
-                <p id="profile-bio" style="color: var(--text-secondary); margin-top: 1rem; display: none;"></p>
+                <h1 id="hero-name" style="font-size: clamp(2rem, 8vw, 3rem); word-break: break-word;">Dheena Cembeti</h1>
+                <div id="hero-role" style="font-size: clamp(1.2rem, 4vw, 1.6rem); font-weight: 700; word-break: break-word;"><span style="background: linear-gradient(135deg, var(--primary), var(--primary-dark)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">Java</span> Fullstack Developer</div>
+                <p id="profile-bio" style="color: var(--text-secondary); margin-top: 1rem; display: none; word-break: break-word; white-space: normal;"></p>
                 <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem;">
                     <label for="resume-input" style="background: var(--primary); color: white; padding: 10px 24px; border-radius: 40px; cursor: pointer;">Upload Resume</label>
                     <input type="file" id="resume-input" style="display: none;" accept=".pdf,.doc,.docx">
@@ -480,7 +501,7 @@
 
     <section id="about" class="reveal section-content">
         <div class="section-header"><h2>About</h2><div class="section-actions"><i class="fas fa-plus action-icon" id="edit-about-btn"></i><i class="fas fa-trash-can action-icon danger" id="clear-about-btn"></i></div></div>
-        <div id="about-content"></div>
+        <div id="about-content" style="word-break: break-word; overflow-wrap: break-word;"></div>
     </section>
 
     <section id="skills" class="reveal section-content">
@@ -540,7 +561,7 @@
     </div>
 </div>
 
-<!-- Other Modals (same as original) -->
+<!-- Other Modals (unchanged) -->
 <div id="about-modal" class="form-modal"><div class="form-modal-content"><h3>Edit About</h3><div class="form-group"><label class="form-label">Description</label><textarea id="about-textarea" class="form-textarea" rows="4"></textarea></div><div class="form-actions"><button class="btn-secondary" onclick="closeAboutModal()">Cancel</button><button class="btn-primary" onclick="saveAbout()">Save</button></div></div></div>
 <div id="skills-modal" class="form-modal"><div class="form-modal-content"><h3>Add Skills Category</h3><div class="form-group"><label class="form-label">Category Name</label><input type="text" id="category-input" class="form-input" placeholder="e.g., Backend"></div><div class="form-group"><label class="form-label">Skills (add one by one)</label><div class="skill-input-group" style="display: flex; gap: 10px;"><input type="text" id="new-skill-input" class="form-input" placeholder="e.g., Java"><button onclick="addSkillToTemp()" class="btn-primary" style="padding: 0 16px;">Add</button></div><div id="skills-preview" style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px;"></div></div><div class="form-actions"><button class="btn-secondary" onclick="closeSkillsModal()">Cancel</button><button class="btn-primary" onclick="saveCategory()">Add Category</button></div></div></div>
 <div id="exp-modal" class="form-modal"><div class="form-modal-content"><h3>Add Work Experience</h3><div class="form-group"><label class="form-label">Company Name</label><input type="text" id="exp-company" class="form-input"></div><div class="form-group"><label class="form-label">Role / Title</label><input type="text" id="exp-role" class="form-input"></div><div class="form-group"><label class="form-label">Location</label><input type="text" id="exp-location" class="form-input" placeholder="e.g., Hyderabad, TG"></div><div class="form-group"><label class="form-label">Start Date</label><input type="month" id="exp-start" class="form-input"></div><div class="form-group"><label class="form-label">End Date (or Present)</label><input type="month" id="exp-end" class="form-input"></div><div class="form-group"><label class="form-label">Description</label><textarea id="exp-desc" class="form-textarea" rows="4"></textarea></div><div class="form-actions"><button class="btn-secondary" onclick="closeExpModal()">Cancel</button><button class="btn-primary" onclick="saveExperience()">Add Experience</button></div></div></div>
@@ -549,7 +570,7 @@
 <div id="cert-modal" class="form-modal"><div class="form-modal-content"><h3>Add Certification</h3><div class="form-group"><label class="form-label">Issued By</label><input type="text" id="cert-issued-by" class="form-input"></div><div class="form-group"><label class="form-label">Domain / Name</label><input type="text" id="cert-domain" class="form-input"></div><div class="form-group"><label class="form-label">Certificate File</label><input type="file" id="cert-file" accept=".pdf,.jpg,.png"></div><div class="form-actions"><button class="btn-secondary" onclick="closeCertModal()">Cancel</button><button class="btn-primary" onclick="saveCertificate()">Add Certificate</button></div></div></div>
 
 <script>
-    // ---------- ALL JAVASCRIPT (fully preserved, browser storage works everywhere) ----------
+    // ---------- ALL JAVASCRIPT (FULLY FUNCTIONAL) ----------
     let aboutText = localStorage.getItem('dynamic_about') || "I am a Java Full Stack Developer with experience in designing and developing scalable applications using Spring Boot and REST APIs. During my internship at KR Mroads, I worked on multiple real-time projects including Panna ATS, Timesheets, and Recruit systems. I focus on writing clean, maintainable code and building efficient backend systems.";
     let skillsList = JSON.parse(localStorage.getItem('dynamic_skills'));
     if (!skillsList || !Array.isArray(skillsList) || (skillsList.length > 0 && typeof skillsList[0] === 'string')) {
@@ -707,22 +728,50 @@
         let firstName = document.getElementById('firstName').value.trim();
         let middleName = document.getElementById('middleName').value.trim();
         let lastName = document.getElementById('lastName').value.trim();
-        let fullName = `${firstName} ${middleName} ${lastName}`.replace(/\s+/g, ' ').trim() || "Dheena Cembeti";
-        let role = document.getElementById('profile-role').value.trim() || "Java Full Stack Developer";
+        let fullName = `${firstName} ${middleName} ${lastName}`.replace(/\s+/g, ' ').trim();
+        if (!fullName) fullName = "Dheena Cembeti";
+        let role = document.getElementById('profile-role').value.trim();
+        if (!role) role = "Java Full Stack Developer";
         let profileImage = document.getElementById('modal-profile-img').src;
         let bio = document.getElementById('bio').value.trim();
         let github = document.getElementById('github-link').value.trim();
         let linkedin = document.getElementById('linkedin-link').value.trim();
         let email = document.getElementById('email').value.trim();
         let phone = document.getElementById('phone').value.trim();
-        if (!firstName || !lastName) { alert("First and Last Name required"); return; }
-        let data = { firstName, middleName, lastName, fullName, role, profileImage, bio, githubLink: github, linkedinLink: linkedin, email, phone };
-        localStorage.setItem('userProfile', JSON.stringify(data));
-        updateNavbar(data);
-        updateHero(data);
+        if (!firstName || !lastName) { alert("First Name and Last Name are required"); return; }
+        let profileData = { firstName, middleName, lastName, fullName, role, profileImage, bio, githubLink: github, linkedinLink: linkedin, email, phone };
+        localStorage.setItem('userProfile', JSON.stringify(profileData));
+        updateNavbar(profileData);
+        updateHero(profileData);
         updateContactPhone(phone);
         closeProfileModal();
-        showToast("Profile saved");
+        showToast("Profile saved successfully!");
+    }
+    function updateHero(p) { 
+        heroImg.src = p.profileImage;
+        const heroName = document.getElementById('hero-name');
+        if (heroName) heroName.innerText = p.fullName || 'Dheena Cembeti';
+        const parts = (p.role || 'Java Fullstack Developer').split(' ');
+        const firstWord = parts[0];
+        const restWords = parts.slice(1).join(' ');
+        const heroRole = document.getElementById('hero-role');
+        if (heroRole) {
+            heroRole.innerHTML = `<span style="background: linear-gradient(135deg, var(--primary), var(--primary-dark)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">${firstWord}</span> ${restWords}`;
+        }
+        const bioEl = document.getElementById('profile-bio');
+        if (p.bio && p.bio.trim()) { bioEl.innerText = p.bio; bioEl.style.display = 'block'; } 
+        else { bioEl.style.display = 'none'; }
+        const gitLink = document.getElementById('github-icon-link');
+        const linkedinLink = document.getElementById('linkedin-icon-link');
+        const emailLink = document.getElementById('email-icon-link');
+        if (p.githubLink) { gitLink.href = p.githubLink; gitLink.style.display = 'inline-flex'; } else gitLink.style.display = 'none';
+        if (p.linkedinLink) { linkedinLink.href = p.linkedinLink; linkedinLink.style.display = 'inline-flex'; } else linkedinLink.style.display = 'none';
+        if (p.email) { emailLink.href = `mailto:${p.email}`; emailLink.style.display = 'inline-flex'; } else emailLink.style.display = 'none';
+    }
+    function updateNavbar(p){ 
+        document.getElementById('navbar-profile-img').src = p.profileImage; 
+        document.getElementById('navbar-name').innerText = p.fullName || 'Dheena'; 
+        document.getElementById('navbar-role').innerText = p.role || 'Developer'; 
     }
     function loadProfile() { 
         let saved = localStorage.getItem('userProfile'); 
@@ -757,8 +806,6 @@
             updateHero(defaultProfile); 
         } 
     }
-    function updateNavbar(p){ document.getElementById('navbar-profile-img').src = p.profileImage; document.getElementById('navbar-name').innerText = p.fullName || 'Dheena'; document.getElementById('navbar-role').innerText = p.role || 'Developer'; }
-    function updateHero(p){ heroImg.src = p.profileImage; document.querySelector('.profile-name').innerText = p.fullName || 'Dheena Cembeti'; let parts = (p.role || 'Java Fullstack Developer').split(' '); let roleEl = document.querySelector('.profile-role'); if(roleEl) roleEl.innerHTML = `<span class="role-fixed" style="background:linear-gradient(135deg, var(--primary), var(--primary-dark)); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">${parts[0]}</span> <span>${parts.slice(1).join(' ')}</span>`; let bioEl = document.getElementById('profile-bio'); if(p.bio && p.bio.trim()){ bioEl.innerText = p.bio; bioEl.style.display = 'block'; } else bioEl.style.display = 'none'; let gitLink = document.getElementById('github-icon-link'); let linkedinLink = document.getElementById('linkedin-icon-link'); let emailLink = document.getElementById('email-icon-link'); if(p.githubLink){ gitLink.href = p.githubLink; gitLink.style.display = 'inline-flex'; } else gitLink.style.display = 'none'; if(p.linkedinLink){ linkedinLink.href = p.linkedinLink; linkedinLink.style.display = 'inline-flex'; } else linkedinLink.style.display = 'none'; if(p.email){ emailLink.href = `mailto:${p.email}`; emailLink.style.display = 'inline-flex'; } else emailLink.style.display = 'none'; }
     document.getElementById('profile-img-input')?.addEventListener('change', handleImageUpload);
     
     const menuToggle = document.getElementById('menuToggle'); const navBar = document.getElementById('navbar'); 
