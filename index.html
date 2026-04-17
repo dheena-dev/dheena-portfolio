@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="64x64" href="./assets/logo.png">
+    <title>dheena.portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #10B981;
+            --primary-dark: #059669;
+            --primary-light: #D1FAE5;
+            --accent: #34D399;
+            --accent-light: #D1FAE5;
+            --text-main: #064E3B;
+            --text-secondary: #047857;
+            --bg: #FFFFFF;
+            --bg-dark: #022C22;
+            --section-bg: #F0FDF4;
+            --section-bg-alt: #ECFDF5;
+            --nav-bg: rgba(255, 255, 255, 0.98);
+            --transition: all 0.3s ease;
+            --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.02);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #F9FAFB 0%, #F0FDF4 100%);
+            color: var(--text-main);
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        /* Navbar (Desktop) */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 260px;
+            height: 100vh;
+            padding: 2rem 1.5rem;
+            background: var(--nav-bg);
+            backdrop-filter: blur(12px);
+            display: flex;
+            flex-direction: column;
+            z-index: 1000;
+            border-right: 1px solid rgba(16, 185, 129, 0.2);
+            box-shadow: 2px 0 20px rgba(0, 0, 0, 0.03);
+            overflow-y: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 600;
+            padding: 0.6rem 0.8rem;
+            border-radius: 12px;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a i {
+            width: 24px;
+            color: var(--primary);
+        }
+
+        .nav-links a:hover, .nav-links a.active-link {
+            background: var(--primary-light);
+            color: var(--primary-dark);
+        }
+
+        /* Mobile menu button */
+        .menu-toggle {
+            display: none;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1100;
+            background: var(--primary);
+            color: white;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            border: none;
+            transition: var(--transition);
+        }
+        .menu-toggle:hover {
+            background: var(--primary-dark);
+            transform: scale(0.96);
+        }
+
+        main {
+            margin-left: 260px;
+        }
+
+        /* Sections */
+        section {
+            padding: 80px 6%;
+            min-height: auto;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .hero {
+            min-height: 100vh;
+            width: calc(100% + 260px);
+            margin-left: -260px;
+            background: linear-gradient(135deg, #ECFDF5 0%, #D1FAE5 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+        }
+
+        .profile-card {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4rem;
+            max-width: 1100px;
+            width: 90%;
+            padding: 2rem;
+        }
+
+        .profile-content { flex: 1; }
+        .profile-img {
+            width: 260px;
+            height: 260px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--primary);
+            box-shadow: 0 20px 35px rgba(16,185,129,0.2);
+            transition: 0.3s;
+        }
+        .profile-img:hover { transform: scale(1.02); }
+
+        h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 2px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+        .section-actions {
+            display: flex;
+            gap: 12px;
+        }
+        .action-icon {
+            background: rgba(16, 185, 129, 0.1);
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: var(--primary);
+            font-size: 1rem;
+        }
+        .action-icon:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+        .action-icon.danger:hover {
+            background: #EF4444;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.8rem;
+            margin-top: 1.5rem;
+        }
+
+        .card, .skill-category-card {
+            background: white;
+            border-radius: 28px;
+            padding: 1.5rem;
+            border: 1px solid var(--primary-light);
+            transition: 0.25s;
+            position: relative;
+            box-shadow: var(--shadow);
+        }
+        .card:hover, .skill-category-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--primary);
+            box-shadow: var(--shadow);
+        }
+
+        .remove-item-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1rem;
+            cursor: pointer;
+            color: #94A3B8;
+            transition: 0.2s;
+            z-index: 10;
+        }
+        .remove-item-btn:hover { color: #EF4444; transform: scale(1.1); }
+
+        .skill-badge {
+            background: linear-gradient(115deg, var(--primary-light), var(--accent-light));
+            padding: 6px 16px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary-dark);
+        }
+
+        .exp-meta, .project-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 0.75rem 0;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+        .exp-meta span, .project-meta span {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .exp-meta i, .project-meta i {
+            width: 16px;
+            color: var(--primary);
+        }
+        .exp-company, .exp-role, .project-title, .edu-title {
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+            font-size: 1.1rem;
+        }
+        .exp-label, .project-label, .edu-label {
+            font-weight: 600;
+            color: var(--text-main);
+            margin-right: 6px;
+        }
+        .description-label {
+            font-weight: 600;
+            color: var(--text-main);
+            margin-top: 0.5rem;
+            margin-bottom: 0.25rem;
+            display: block;
+        }
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 12px;
+        }
+        .tech-tag {
+            background: var(--primary-light);
+            padding: 4px 12px;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--primary-dark);
+        }
+
+        .edu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            margin-bottom: 0.75rem;
+            padding-right: 2rem;
+        }
+        .edu-date {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .edu-date i {
+            color: var(--primary);
+        }
+        .edu-detail {
+            margin: 0.5rem 0;
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+        }
+        .edu-detail i {
+            width: 18px;
+            color: var(--primary);
+            font-size: 0.9rem;
+        }
+        .edu-detail span {
+            color: var(--text-secondary);
+        }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+        .form-label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: var(--text-main);
+        }
+        .form-input, .form-textarea, select {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid #E2E8F0;
+            border-radius: 16px;
+            font-size: 0.95rem;
+            transition: 0.2s;
+            background: white;
+        }
+        .form-input:focus, .form-textarea:focus, select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(16,185,129,0.1);
+        }
+
+        .modal-overlay, .form-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(5px);
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+        }
+        .modal-overlay.active, .form-modal.active { display: flex; }
+        .modal-content, .form-modal-content {
+            background: white;
+            border-radius: 32px;
+            max-width: 550px;
+            width: 90%;
+            max-height: 85vh;
+            overflow-y: auto;
+            padding: 1.8rem;
+        }
+
+        .form-actions { display: flex; gap: 12px; justify-content: flex-end; margin-top: 1.5rem; }
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+        .btn-secondary {
+            background: #E2E8F0;
+            color: #1E293B;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .btn-secondary:hover {
+            background: #CBD5E1;
+        }
+
+        .resume-action-btn {
+            background: var(--primary-light);
+            padding: 8px 12px;
+            border-radius: 30px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+            color: var(--primary-dark);
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+        .resume-action-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+        .resume-action-btn span {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                transform: translateX(-100%);
+                width: 280px;
+                z-index: 1200;
+            }
+            nav.open { transform: translateX(0); }
+            .menu-toggle { display: flex; }
+            main { margin-left: 0; }
+            .hero {
+                width: 100%;
+                margin-left: 0;
+                min-height: auto;
+                padding: 5rem 0;
+            }
+            .profile-card {
+                flex-direction: column;
+                text-align: center;
+                gap: 2rem;
+            }
+            .profile-img { width: 200px; height: 200px; }
+            section { padding: 60px 5%; }
+            h2 { font-size: 1.8rem; }
+            .edu-header { flex-direction: column; gap: 0.5rem; }
+            .grid { grid-template-columns: 1fr; }
+        }
+
+        footer {
+            background: linear-gradient(135deg, #022C22, #064E3B);
+            color: white;
+            text-align: center;
+            padding: 3rem;
+        }
+        .toast-notify {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #064E3B;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 40px;
+            z-index: 3000;
+            font-weight: 500;
+            box-shadow: var(--shadow);
+        }
+        .reveal { opacity: 0; transform: translateY(20px); transition: 0.6s; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        .icon-btn-circle {
+            background: var(--primary-light);
+            border: none;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: 0.2s;
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+        .icon-btn-circle:hover { background: var(--primary); color: white; transform: scale(0.96); }
+        .icon-btn-circle.danger { color: #EF4444; }
+        .icon-btn-circle.danger:hover { background: #EF4444; color: white; }
+        .profile-img-actions { display: flex; gap: 10px; justify-content: center; margin-top: 12px; }
+        .modal-profile-img {
+            border: 3px solid var(--primary);
+            box-shadow: 0 0 0 2px white, 0 0 0 5px var(--primary-light);
+        }
+    </style>
+</head>
+<body>
+
+<button class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></button>
+
+<nav id="navbar">
+    <div style="text-align: center; margin-bottom: 2rem;">
+        <img id="navbar-profile-img" src="https://ui-avatars.com/api/?name=Dheena+Cembeti&background=10B981&color=fff" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 3px solid var(--primary); cursor: pointer; margin-bottom: 0.5rem;" onclick="openProfileModal()">
+        <div id="navbar-name" style="font-weight: 700;">Dheena</div>
+        <div id="navbar-role" style="font-size: 0.8rem; color: var(--text-secondary);">Developer</div>
+        <button onclick="openProfileModal()" style="margin-top: 12px; background: var(--primary); color: white; border: none; padding: 8px 18px; border-radius: 30px; font-size: 0.8rem; cursor: pointer;"><i class="fas fa-user-edit"></i> My Profile</button>
+    </div>
+    <div class="nav-links">
+        <a href="#home" data-section="home"><i class="fas fa-home"></i> Home</a>
+        <a href="#about" data-section="about"><i class="fas fa-user"></i> About</a>
+        <a href="#skills" data-section="skills"><i class="fas fa-code"></i> Skills</a>
+        <a href="#experience" data-section="experience"><i class="fas fa-briefcase"></i> Experience</a>
+        <a href="#projects" data-section="projects"><i class="fas fa-layer-group"></i> Projects</a>
+        <a href="#education" data-section="education"><i class="fas fa-graduation-cap"></i> Education</a>
+        <a href="#certifications" data-section="certifications"><i class="fas fa-certificate"></i> Certifications</a>
+        <a href="#contact" data-section="contact"><i class="fas fa-envelope"></i> Contact</a>
+    </div>
+</nav>
+
+<main>
+    <section id="home" class="hero">
+        <div class="profile-card">
+            <div class="profile-content">
+                <h1 class="profile-name" style="font-size: 2.8rem;">Dheena Cembeti</h1>
+                <div class="profile-role" style="font-size: 1.4rem; font-weight: 700;"><span class="role-fixed" style="background: linear-gradient(135deg, var(--primary), var(--primary-dark)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Java</span> <span class="role-animated">Fullstack Developer</span></div>
+                <p id="profile-bio" style="color: var(--text-secondary); margin-top: 1rem; display: none;"></p>
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem;">
+                    <label for="resume-input" style="background: var(--primary); color: white; padding: 10px 24px; border-radius: 40px; cursor: pointer;">Upload Resume</label>
+                    <input type="file" id="resume-input" style="display: none;" accept=".pdf,.doc,.docx">
+                    <div id="resume-actions" style="display: none; gap: 10px;"></div>
+                    <a id="github-icon-link" href="#" target="_blank" style="display: none; background: var(--primary-light); width: 40px; height: 40px; border-radius: 50%; align-items: center; justify-content: center; color: var(--primary);"><i class="fab fa-github"></i></a>
+                    <a id="email-icon-link" href="#" target="_blank" style="display: none; background: var(--primary-light); width: 40px; height: 40px; border-radius: 50%; align-items: center; justify-content: center;"><i class="fas fa-envelope"></i></a>
+                    <a id="linkedin-icon-link" href="#" target="_blank" style="display: none; background: var(--primary-light); width: 40px; height: 40px; border-radius: 50%; align-items: center; justify-content: center;"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+            <img id="heroProfileImg" src="assets/Dheena.jpeg" class="profile-img" alt="Profile" onerror="this.src='https://ui-avatars.com/api/?name=Dheena+Cembeti&background=10B981&color=fff'">
+        </div>
+    </section>
+
+    <section id="about" class="reveal section-content">
+        <div class="section-header"><h2>About</h2><div class="section-actions"><i class="fas fa-plus action-icon" id="edit-about-btn"></i><i class="fas fa-trash-can action-icon danger" id="clear-about-btn"></i></div></div>
+        <div id="about-content"></div>
+    </section>
+
+    <section id="skills" class="reveal section-content">
+        <div class="section-header"><h2>Skills</h2><div class="section-actions"><i class="fas fa-plus action-icon" id="add-skill-btn"></i><i class="fas fa-trash-can action-icon danger" id="clear-skills-btn"></i></div></div>
+        <div id="skills-list"></div>
+    </section>
+
+    <section id="experience" class="reveal section-content">
+        <div class="section-header"><h2>Work Experience</h2><div class="section-actions"><i class="fas fa-plus action-icon" id="add-exp-btn"></i><i class="fas fa-trash-can action-icon danger" id="clear-exp-btn"></i></div></div>
+        <div id="experiences-grid" class="grid"></div>
+    </section>
+
+    <section id="projects" class="reveal section-content">
+        <div class="section-header"><h2>Projects</h2><div class="section-actions"><i class="fas fa-plus action-icon" id="add-project-btn"></i><i class="fas fa-trash-can action-icon danger" id="clear-projects-btn"></i></div></div>
+        <div id="projects-grid" class="grid"></div>
+    </section>
+
+    <section id="education" class="reveal section-content">
+        <div class="section-header"><h2>Education</h2><div class="section-actions"><i class="fas fa-plus action-icon" id="add-edu-btn"></i><i class="fas fa-trash-can action-icon danger" id="clear-edu-btn"></i></div></div>
+        <div id="education-grid" class="grid"></div>
+    </section>
+
+    <section id="certifications" class="reveal section-content">
+        <div class="section-header"><h2>Certifications</h2><div class="section-actions"><i class="fas fa-plus action-icon" id="add-cert-btn"></i><i class="fas fa-trash-can action-icon danger" id="clear-certs-btn"></i></div></div>
+        <div id="certifications-grid" class="grid"></div>
+    </section>
+</main>
+
+<footer id="contact" class="section-content"><h2 style="color: white;">Let's Connect</h2><p>📞 <span id="contact-phone-number">+91 9490969431</span></p><p>✉️ dheena.dev2025@gmail.com</p><div><a href="#" style="color: var(--accent);">LinkedIn</a> • <a href="#" style="color: var(--accent);">GitHub</a></div><p style="margin-top: 2rem;">© 2025 Dheena Cembeti</p></footer>
+
+<!-- Profile Modal -->
+<div id="profile-modal" class="modal-overlay">
+    <div class="modal-content">
+        <button onclick="closeProfileModal()" style="float:right; background:none; border:none; font-size:1.5rem; cursor:pointer;">&times;</button>
+        <div class="modal-body" style="display: flex; gap: 1.5rem; flex-wrap: wrap;">
+            <div style="text-align: center;">
+                <img id="modal-profile-img" class="modal-profile-img" style="width: 140px; height: 140px; border-radius: 50%; object-fit: cover; margin-bottom: 12px;">
+                <div class="profile-img-actions">
+                    <label for="profile-img-input" class="icon-btn-circle" title="Upload Photo"><i class="fas fa-camera"></i></label>
+                    <input type="file" id="profile-img-input" style="display: none;" accept="image/*">
+                    <button onclick="removeProfileImage()" class="icon-btn-circle danger" title="Remove Photo"><i class="fas fa-trash-alt"></i></button>
+                </div>
+            </div>
+            <div style="flex:1;">
+                <div class="form-group"><label class="form-label">First Name</label><input type="text" id="firstName" class="form-input" placeholder="First Name"></div>
+                <div class="form-group"><label class="form-label">Middle Name</label><input type="text" id="middleName" class="form-input" placeholder="Middle Name"></div>
+                <div class="form-group"><label class="form-label">Last Name</label><input type="text" id="lastName" class="form-input" placeholder="Last Name"></div>
+                <div class="form-group"><label class="form-label">Role / Job Title</label><input type="text" id="profile-role" class="form-input" placeholder="e.g., Java Full Stack Developer"></div>
+                <div class="form-group"><label class="form-label">Phone Number</label><input type="tel" id="phone" class="form-input" placeholder="+91 9490969431"></div>
+                <div class="form-group"><label class="form-label">Email Address</label><input type="email" id="email" class="form-input" placeholder="your.email@gmail.com"></div>
+                <div class="form-group"><label class="form-label">Professional Bio</label><textarea id="bio" class="form-textarea" rows="2" placeholder="Short bio..."></textarea></div>
+                <div class="form-group"><label class="form-label">GitHub Profile</label><input type="url" id="github-link" class="form-input" placeholder="https://github.com/"></div>
+                <div class="form-group"><label class="form-label">LinkedIn Profile</label><input type="url" id="linkedin-link" class="form-input" placeholder="https://linkedin.com/"></div>
+            </div>
+        </div>
+        <div class="form-actions"><button class="btn-secondary" onclick="closeProfileModal()">Cancel</button><button class="btn-primary" onclick="updateProfile()">Save Profile</button></div>
+    </div>
+</div>
+
+<!-- Other Modals (unchanged structure) -->
+<div id="about-modal" class="form-modal"><div class="form-modal-content"><h3>Edit About</h3><div class="form-group"><label class="form-label">Description</label><textarea id="about-textarea" class="form-textarea" rows="4"></textarea></div><div class="form-actions"><button class="btn-secondary" onclick="closeAboutModal()">Cancel</button><button class="btn-primary" onclick="saveAbout()">Save</button></div></div></div>
+<div id="skills-modal" class="form-modal"><div class="form-modal-content"><h3>Add Skills Category</h3><div class="form-group"><label class="form-label">Category Name</label><input type="text" id="category-input" class="form-input" placeholder="e.g., Backend"></div><div class="form-group"><label class="form-label">Skills (add one by one)</label><div class="skill-input-group" style="display: flex; gap: 10px;"><input type="text" id="new-skill-input" class="form-input" placeholder="e.g., Java"><button onclick="addSkillToTemp()" class="btn-primary" style="padding: 0 16px;">Add</button></div><div id="skills-preview" style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px;"></div></div><div class="form-actions"><button class="btn-secondary" onclick="closeSkillsModal()">Cancel</button><button class="btn-primary" onclick="saveCategory()">Add Category</button></div></div></div>
+<div id="exp-modal" class="form-modal"><div class="form-modal-content"><h3>Add Work Experience</h3><div class="form-group"><label class="form-label">Company Name</label><input type="text" id="exp-company" class="form-input"></div><div class="form-group"><label class="form-label">Role / Title</label><input type="text" id="exp-role" class="form-input"></div><div class="form-group"><label class="form-label">Location</label><input type="text" id="exp-location" class="form-input" placeholder="e.g., Hyderabad, TG"></div><div class="form-group"><label class="form-label">Start Date</label><input type="month" id="exp-start" class="form-input"></div><div class="form-group"><label class="form-label">End Date (or Present)</label><input type="month" id="exp-end" class="form-input"></div><div class="form-group"><label class="form-label">Description</label><textarea id="exp-desc" class="form-textarea" rows="4"></textarea></div><div class="form-actions"><button class="btn-secondary" onclick="closeExpModal()">Cancel</button><button class="btn-primary" onclick="saveExperience()">Add Experience</button></div></div></div>
+<div id="project-modal" class="form-modal"><div class="form-modal-content"><h3>Add Project</h3><div class="form-group"><label class="form-label">Project Title</label><input type="text" id="project-title" class="form-input" placeholder="e.g., AI Recruiter Chatbot"></div><div class="form-group"><label class="form-label">Description</label><textarea id="project-desc" class="form-textarea" rows="4" placeholder="Project description..."></textarea></div><div class="form-group"><label class="form-label">Tech Stack</label><input type="text" id="project-tech" class="form-input" placeholder="e.g., Java, Spring Boot, React, MySQL"></div><div class="form-actions"><button class="btn-secondary" onclick="closeProjectModal()">Cancel</button><button class="btn-primary" onclick="saveProject()">Add Project</button></div></div></div>
+<div id="education-modal" class="form-modal"><div class="form-modal-content"><h3>Add Education</h3><div class="form-group"><label class="form-label">Education Type</label><select id="edu-type" class="form-input"><option value="Graduation">Graduation</option><option value="XII / Diploma">XII / Diploma</option><option value="Matriculation">Matriculation</option></select></div><div class="form-group"><label class="form-label">Field of Study</label><input type="text" id="edu-field" class="form-input" placeholder="e.g., B.Tech Computer Science"></div><div class="form-group"><label class="form-label">Institution / College / School</label><input type="text" id="edu-college" class="form-input" placeholder="College / School Name"></div><div class="form-group"><label class="form-label">Location</label><input type="text" id="edu-location" class="form-input" placeholder="City, State"></div><div class="form-group"><label class="form-label">Start Date (Month/Year)</label><input type="month" id="edu-start" class="form-input"></div><div class="form-group"><label class="form-label">End Date (Month/Year)</label><input type="month" id="edu-end" class="form-input"></div><div class="form-actions"><button class="btn-secondary" onclick="closeEducationModal()">Cancel</button><button class="btn-primary" onclick="saveEducation()">Add Education</button></div></div></div>
+<div id="cert-modal" class="form-modal"><div class="form-modal-content"><h3>Add Certification</h3><div class="form-group"><label class="form-label">Issued By</label><input type="text" id="cert-issued-by" class="form-input"></div><div class="form-group"><label class="form-label">Domain / Name</label><input type="text" id="cert-domain" class="form-input"></div><div class="form-group"><label class="form-label">Certificate File</label><input type="file" id="cert-file" accept=".pdf,.jpg,.png"></div><div class="form-actions"><button class="btn-secondary" onclick="closeCertModal()">Cancel</button><button class="btn-primary" onclick="saveCertificate()">Add Certificate</button></div></div></div>
+
+<script>
+    // ---------- FULL FUNCTIONALITY (all browsers) ----------
+    let aboutText = localStorage.getItem('dynamic_about') || "I am a Java Full Stack Developer with experience in designing and developing scalable applications using Spring Boot and REST APIs. During my internship at KR Mroads, I worked on multiple real-time projects including Panna ATS, Timesheets, and Recruit systems. I focus on writing clean, maintainable code and building efficient backend systems.";
+    let skillsList = JSON.parse(localStorage.getItem('dynamic_skills'));
+    if (!skillsList || !Array.isArray(skillsList) || (skillsList.length > 0 && typeof skillsList[0] === 'string')) {
+        let oldSkills = skillsList && Array.isArray(skillsList) ? skillsList : ["Java", "Spring Boot", "REST APIs", "MySQL", "HTML/CSS", "JavaScript", "Hibernate", "JDBC"];
+        skillsList = [{ category: "Core Technologies", items: oldSkills }];
+        localStorage.setItem('dynamic_skills', JSON.stringify(skillsList));
+    }
+    
+    let storedExps = JSON.parse(localStorage.getItem('dynamic_experiences'));
+    let experiences;
+    if (!storedExps || storedExps.length === 0) {
+        experiences = [{ company: "KR Mroads", role: "Java Full Stack Developer Intern", location: "Hyderabad, TG", duration: "May 2025 – October 2025", description: "Designed and developed scalable backend modules using Java, Spring Boot, REST APIs, JDBC, and Hibernate. Delivered multiple real-time projects including Panna Onboarding, Panna ATS, Timesheets, and Recruit. Applied OOP concepts, exception handling, and improved code reliability. Enhanced UI using HTML, CSS, and JavaScript. Optimized backend performance, improving system efficiency by 20%." }];
+    } else {
+        experiences = storedExps.map(exp => ({ ...exp, location: exp.location || "" }));
+    }
+    
+    let projectsList = JSON.parse(localStorage.getItem('dynamic_projects')) || [
+        { title: "AI Recruiter Salary Negotiation Chatbot", description: "Developed an AI-powered chatbot using NLP and REST APIs, built a recruiter dashboard for salary tracking and negotiation, and ensured scalable backend integration.", techstack: "Java, REST APIs, NLP" },
+        { title: "Panna Timesheets – Automation Platform", description: "Developed a Leave Reset Module, implemented an Excel upload engine with validation, built automated email reminders, and integrated backend services for reliable data flow.", techstack: "Java, Spring Boot, REST APIs" }
+    ];
+    
+    let educations = JSON.parse(localStorage.getItem('dynamic_educations')) || [
+        { type: "Graduation", field: "B.Tech Mechanical Engineering", institution: "RK College Of Engineering", location: "Hyderabad, India", startDate: "2019-08", endDate: "2023-06", yearDisplay: "August 2019 – June 2023" }
+    ];
+    
+    let certificates = JSON.parse(localStorage.getItem('dynamic_certificates')) || [];
+
+    function saveAll() { 
+        localStorage.setItem('dynamic_about', aboutText); 
+        localStorage.setItem('dynamic_skills', JSON.stringify(skillsList)); 
+        localStorage.setItem('dynamic_experiences', JSON.stringify(experiences)); 
+        localStorage.setItem('dynamic_projects', JSON.stringify(projectsList)); 
+        localStorage.setItem('dynamic_educations', JSON.stringify(educations)); 
+        localStorage.setItem('dynamic_certificates', JSON.stringify(certificates)); 
+    }
+    function showToast(msg, isError = false) { let t = document.createElement('div'); t.className = 'toast-notify'; t.innerText = msg; t.style.background = isError ? '#EF4444' : '#10B981'; document.body.appendChild(t); setTimeout(() => t.remove(), 2000); }
+    function escapeHtml(str) { if(!str) return ''; return str.replace(/[&<>]/g, function(m){if(m==='&') return '&amp;'; if(m==='<') return '&lt;'; if(m==='>') return '&gt;'; return m;}); }
+    function formatMonthYear(dateStr) { 
+        if (!dateStr) return ''; 
+        const [year, month] = dateStr.split('-'); 
+        if (!year || !month) return dateStr; 
+        const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']; 
+        return `${monthNames[parseInt(month)-1]} ${year}`; 
+    }
+    
+    function renderAbout() { document.getElementById('about-content').innerHTML = aboutText ? `<p>${escapeHtml(aboutText)}</p>` : `<div class="empty-placeholder">✨ No content. Click + to add.</div>`; }
+    function renderSkills() { const container = document.getElementById('skills-list'); if (!skillsList.length) { container.innerHTML = `<div class="empty-placeholder">➕ Add skills using + button.</div>`; return; } container.innerHTML = skillsList.map((cat, idx) => `<div class="skill-category-card"><button class="remove-item-btn" data-cat-idx="${idx}"><i class="fas fa-trash-alt"></i></button><h3>${escapeHtml(cat.category)}</h3><div class="skill-items">${cat.items.map((skill) => `<div class="skill-badge">${escapeHtml(skill)}</div>`).join('')}</div></div>`).join(''); document.querySelectorAll('[data-cat-idx]').forEach(btn => btn.addEventListener('click', () => { skillsList.splice(parseInt(btn.dataset.catIdx),1); saveAll(); renderSkills(); showToast("Category removed"); })); }
+    
+    function renderExperiences() { 
+        const grid = document.getElementById('experiences-grid'); 
+        if (!experiences.length) { grid.innerHTML = `<div class="empty-placeholder">📌 No experiences added.</div>`; return; } 
+        grid.innerHTML = experiences.map((exp, idx) => `
+            <div class="card">
+                <button class="remove-item-btn" data-exp-idx="${idx}"><i class="fas fa-trash-alt"></i></button>
+                <div class="exp-company"><span class="exp-label">Company:</span> ${escapeHtml(exp.company)}</div>
+                <div class="exp-role"><span class="exp-label">Role:</span> ${escapeHtml(exp.role)}</div>
+                <div class="exp-meta">
+                    <span><i class="far fa-calendar-alt"></i> ${escapeHtml(exp.duration)}</span>
+                    ${exp.location ? `<span><i class="fas fa-map-marker-alt"></i> ${escapeHtml(exp.location)}</span>` : ''}
+                </div>
+                <span class="description-label">Description:</span>
+                <p style="color: var(--text-secondary); line-height: 1.5;">${escapeHtml(exp.description)}</p>
+            </div>
+        `).join(''); 
+        document.querySelectorAll('[data-exp-idx]').forEach(btn => btn.addEventListener('click', () => { experiences.splice(parseInt(btn.dataset.expIdx),1); saveAll(); renderExperiences(); showToast("Experience removed"); })); 
+    }
+    
+    function renderProjects() {
+        const grid = document.getElementById('projects-grid');
+        if (!projectsList.length) { grid.innerHTML = `<div class="empty-placeholder">🚀 No projects added. Click + to add.</div>`; return; }
+        grid.innerHTML = projectsList.map((proj, idx) => `
+            <div class="card">
+                <button class="remove-item-btn" data-proj-idx="${idx}"><i class="fas fa-trash-alt"></i></button>
+                <div class="project-title"><span class="project-label">Title:</span> ${escapeHtml(proj.title)}</div>
+                <span class="description-label">Description:</span>
+                <p style="color: var(--text-secondary); line-height: 1.5;">${escapeHtml(proj.description)}</p>
+                <div class="tech-stack">
+                    <span class="project-label">Tech Stack:</span>
+                    ${proj.techstack.split(',').map(tech => `<span class="tech-tag">${escapeHtml(tech.trim())}</span>`).join('')}
+                </div>
+            </div>
+        `).join('');
+        document.querySelectorAll('[data-proj-idx]').forEach(btn => btn.addEventListener('click', () => { projectsList.splice(parseInt(btn.dataset.projIdx),1); saveAll(); renderProjects(); showToast("Project removed"); }));
+    }
+    
+    function renderEducations() { 
+        const grid = document.getElementById('education-grid'); 
+        if (!educations.length) { grid.innerHTML = `<div class="empty-placeholder">🎓 No education entries. Click + to add.</div>`; return; } 
+        grid.innerHTML = educations.map((edu, idx) => {
+            const dateStr = edu.yearDisplay || (formatMonthYear(edu.startDate) + ' – ' + formatMonthYear(edu.endDate));
+            let institutionLabel = (edu.type === "Matriculation") ? "School" : "College";
+            return `
+                <div class="card">
+                    <button class="remove-item-btn" data-edu-idx="${idx}"><i class="fas fa-trash-alt"></i></button>
+                    <div class="edu-header">
+                        <div class="edu-title">${escapeHtml(edu.type)}</div>
+                        <div class="edu-date"><i class="far fa-calendar-alt"></i> ${escapeHtml(dateStr)}</div>
+                    </div>
+                    <div class="edu-detail"><span><span class="edu-label">Field:</span> ${escapeHtml(edu.field)}</span></div>
+                    <div class="edu-detail"><span><span class="edu-label">${institutionLabel}:</span> ${escapeHtml(edu.institution)}</span></div>
+                    ${edu.location ? `<div class="edu-detail"><i class="fas fa-map-marker-alt"></i> <span>${escapeHtml(edu.location)}</span></div>` : ''}
+                </div>
+            `;
+        }).join(''); 
+        document.querySelectorAll('[data-edu-idx]').forEach(btn => btn.addEventListener('click', () => { educations.splice(parseInt(btn.dataset.eduIdx),1); saveAll(); renderEducations(); showToast("Education removed"); })); 
+    }
+    
+    function renderCertifications() { const container = document.getElementById('certifications-grid'); if (!certificates.length) { container.innerHTML = `<div class="empty-placeholder">No certifications added. Click "+" icon to add.</div>`; return; } container.innerHTML = certificates.map((cert,idx)=>`<div class="card"><button class="remove-item-btn" data-cert-idx="${idx}"><i class="fas fa-trash-alt"></i></button><h3>${escapeHtml(cert.domain)}</h3><p><strong>Issued by:</strong> ${escapeHtml(cert.issuedBy)}</p><div><button onclick="downloadCertificate(${idx})" style="background:var(--primary-light); border:none; padding:6px 12px; border-radius:20px;"><i class="fas fa-download"></i> Download</button> <button onclick="viewCertificate(${idx})" style="background:var(--primary-light); border:none; padding:6px 12px; border-radius:20px;"><i class="fas fa-eye"></i> View</button></div></div>`).join(''); document.querySelectorAll('[data-cert-idx]').forEach(btn=> btn.addEventListener('click',()=>{ certificates.splice(parseInt(btn.dataset.certIdx),1); saveAll(); renderCertifications(); showToast("Certification removed"); })); }
+    function dataURLToBlob(dataUrl) { const arr = dataUrl.split(','); const mime = arr[0].match(/:(.*?);/)[1]; const bstr = atob(arr[1]); let n = bstr.length; const u8arr = new Uint8Array(n); while (n--) u8arr[n] = bstr.charCodeAt(n); return new Blob([u8arr], { type: mime }); }
+    window.viewCertificate = function(idx) { let cert = certificates[idx]; if(cert && cert.fileData) { let blob = dataURLToBlob(cert.fileData); let url = URL.createObjectURL(blob); window.open(url, '_blank'); setTimeout(() => URL.revokeObjectURL(url), 5000); } else showToast("Cannot open",true); };
+    window.downloadCertificate = function(idx) { let cert = certificates[idx]; if(cert && cert.fileData) { let a = document.createElement('a'); a.href = cert.fileData; a.download = cert.fileName || 'certificate'; a.click(); } else showToast("Not found",true); };
+    function updateContactPhone(phone) { document.getElementById('contact-phone-number').innerText = phone || '+91 9490969431'; }
+    
+    let tempSkillsArray = [];
+    function openSkillsModal() { tempSkillsArray = []; document.getElementById('category-input').value = ''; document.getElementById('new-skill-input').value = ''; document.getElementById('skills-preview').innerHTML = ''; document.getElementById('skills-modal').classList.add('active'); }
+    function addSkillToTemp() { let s = document.getElementById('new-skill-input').value.trim(); if(s) { tempSkillsArray.push(s); document.getElementById('new-skill-input').value = ''; document.getElementById('skills-preview').innerHTML = tempSkillsArray.map((sk,i)=>`<span class="skill-tag" style="background:var(--primary-light); padding:4px 12px; border-radius:20px;">${escapeHtml(sk)} <i class="fas fa-times" onclick="removeTempSkill(${i})" style="cursor:pointer;"></i></span>`).join(''); } }
+    function removeTempSkill(i) { tempSkillsArray.splice(i,1); document.getElementById('skills-preview').innerHTML = tempSkillsArray.map((sk,i)=>`<span class="skill-tag" style="background:var(--primary-light); padding:4px 12px; border-radius:20px;">${escapeHtml(sk)} <i class="fas fa-times" onclick="removeTempSkill(${i})" style="cursor:pointer;"></i></span>`).join(''); }
+    function saveCategory() { let cat = document.getElementById('category-input').value.trim(); if(!cat) { showToast("Category name required",true); return; } if(tempSkillsArray.length===0) { showToast("Add at least one skill",true); return; } skillsList.push({ category: cat, items: [...tempSkillsArray] }); saveAll(); renderSkills(); closeSkillsModal(); showToast(`Category "${cat}" added`); }
+    function closeSkillsModal() { document.getElementById('skills-modal').classList.remove('active'); }
+    
+    function openExpModal() { document.getElementById('exp-modal').classList.add('active'); } 
+    function closeExpModal() { document.getElementById('exp-modal').classList.remove('active'); }
+    function saveExperience() { 
+        let company = document.getElementById('exp-company').value.trim();
+        let role = document.getElementById('exp-role').value.trim();
+        let location = document.getElementById('exp-location').value.trim();
+        let startRaw = document.getElementById('exp-start').value;
+        let endRaw = document.getElementById('exp-end').value;
+        let desc = document.getElementById('exp-desc').value.trim();
+        if(!company || !role) { showToast("Company and Role required",true); return; }
+        let startF = startRaw ? formatMonthYear(startRaw) : '';
+        let endF = endRaw ? formatMonthYear(endRaw) : 'Present';
+        let duration = (startF && endF) ? `${startF} – ${endF}` : (startF ? `${startF} – Present` : 'Present');
+        experiences.push({ company, role, location, duration, description: desc });
+        saveAll(); renderExperiences(); closeExpModal();
+        document.getElementById('exp-company').value = ''; document.getElementById('exp-role').value = ''; document.getElementById('exp-location').value = ''; document.getElementById('exp-start').value = ''; document.getElementById('exp-end').value = ''; document.getElementById('exp-desc').value = '';
+        showToast("Experience added");
+    }
+    
+    function openProjectModal() { document.getElementById('project-modal').classList.add('active'); } 
+    function closeProjectModal() { document.getElementById('project-modal').classList.remove('active'); }
+    function saveProject() { 
+        let title = document.getElementById('project-title').value.trim();
+        let desc = document.getElementById('project-desc').value.trim();
+        let tech = document.getElementById('project-tech').value.trim();
+        if(!title) { showToast("Project title required",true); return; }
+        projectsList.push({ title, description: desc, techstack: tech });
+        saveAll(); renderProjects(); closeProjectModal();
+        document.getElementById('project-title').value = ''; document.getElementById('project-desc').value = ''; document.getElementById('project-tech').value = '';
+        showToast("Project added");
+    }
+    
+    function openEducationModal() { document.getElementById('education-modal').classList.add('active'); } 
+    function closeEducationModal() { document.getElementById('education-modal').classList.remove('active'); }
+    function saveEducation() { 
+        let eduType = document.getElementById('edu-type').value;
+        let field = document.getElementById('edu-field').value.trim();
+        let institution = document.getElementById('edu-college').value.trim();
+        let location = document.getElementById('edu-location').value.trim();
+        let startRaw = document.getElementById('edu-start').value;
+        let endRaw = document.getElementById('edu-end').value;
+        if(!field || !institution) { showToast("Field of Study and Institution required",true); return; }
+        let startF = startRaw ? formatMonthYear(startRaw) : '';
+        let endF = endRaw ? formatMonthYear(endRaw) : '';
+        let yearDisplay = (startF && endF) ? `${startF} – ${endF}` : (startF ? `${startF} – Present` : 'Year not specified');
+        educations.push({ type: eduType, field, institution, location, startDate: startRaw, endDate: endRaw, yearDisplay });
+        saveAll(); renderEducations(); closeEducationModal();
+        document.getElementById('edu-field').value = ''; document.getElementById('edu-college').value = ''; document.getElementById('edu-location').value = ''; document.getElementById('edu-start').value = ''; document.getElementById('edu-end').value = '';
+        showToast("Education added");
+    }
+    
+    function openCertModal() { document.getElementById('cert-modal').classList.add('active'); } function closeCertModal() { document.getElementById('cert-modal').classList.remove('active'); document.getElementById('cert-issued-by').value=''; document.getElementById('cert-domain').value=''; document.getElementById('cert-file').value=''; }
+    function saveCertificate() { let issuedBy=document.getElementById('cert-issued-by').value.trim(); let domain=document.getElementById('cert-domain').value.trim(); let file=document.getElementById('cert-file').files[0]; if(!issuedBy||!domain) { showToast("Issued By and Domain required",true); return; } if(!file) { showToast("Please select file",true); return; } let reader=new FileReader(); reader.onload=e=>{ certificates.push({issuedBy,domain,fileData:e.target.result,fileName:file.name,fileType:file.type}); saveAll(); renderCertifications(); closeCertModal(); showToast("Certification added"); }; reader.readAsDataURL(file); }
+    function openAboutModal() { document.getElementById('about-textarea').value=aboutText; document.getElementById('about-modal').classList.add('active'); } function closeAboutModal() { document.getElementById('about-modal').classList.remove('active'); } function saveAbout() { aboutText=document.getElementById('about-textarea').value.trim(); saveAll(); renderAbout(); closeAboutModal(); showToast("About updated"); }
+    function clearAbout() { if(confirm("Remove about?")) { aboutText=""; saveAll(); renderAbout(); showToast("About removed"); } }
+    function clearAllSkills() { if(confirm("Remove all skills?")) { skillsList=[]; saveAll(); renderSkills(); showToast("All skills cleared"); } }
+    function clearAllExperiences() { if(confirm("Remove all experiences?")) { experiences=[]; saveAll(); renderExperiences(); showToast("All experiences removed"); } }
+    function clearAllProjects() { if(confirm("Remove all projects?")) { projectsList=[]; saveAll(); renderProjects(); showToast("All projects cleared"); } }
+    function clearAllEducations() { if(confirm("Remove all education?")) { educations=[]; saveAll(); renderEducations(); showToast("All education cleared"); } }
+    function clearAllCertificates() { if(confirm("Remove all certifications?")) { certificates=[]; saveAll(); renderCertifications(); showToast("All certifications cleared"); } }
+    
+    const sections = document.querySelectorAll('.section-content');
+    const hero = document.querySelector('.hero');
+    function showOnlySection(sectionId) {
+        sections.forEach(section => { section.style.display = (section.id === sectionId) ? 'block' : 'none'; });
+        if (hero) hero.style.display = 'flex';
+    }
+    function showAllSections() { sections.forEach(section => section.style.display = 'block'); if (hero) hero.style.display = 'flex'; }
+    showAllSections();
+    const navLinks = document.querySelectorAll('.nav-links a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetId = link.getAttribute('href').substring(1);
+            if (targetId === 'home') { showAllSections(); window.scrollTo({ top: 0, behavior: 'smooth' }); }
+            else { showOnlySection(targetId); document.getElementById(targetId)?.scrollIntoView({ behavior: 'smooth' }); }
+            navLinks.forEach(l => l.classList.remove('active-link'));
+            link.classList.add('active-link');
+            if (window.innerWidth <= 768) document.getElementById('navbar').classList.remove('open');
+        });
+    });
+    
+    document.getElementById('edit-about-btn')?.addEventListener('click',openAboutModal);
+    document.getElementById('clear-about-btn')?.addEventListener('click',clearAbout);
+    document.getElementById('add-skill-btn')?.addEventListener('click',openSkillsModal);
+    document.getElementById('clear-skills-btn')?.addEventListener('click',clearAllSkills);
+    document.getElementById('add-exp-btn')?.addEventListener('click',openExpModal);
+    document.getElementById('clear-exp-btn')?.addEventListener('click',clearAllExperiences);
+    document.getElementById('add-project-btn')?.addEventListener('click',openProjectModal);
+    document.getElementById('clear-projects-btn')?.addEventListener('click',clearAllProjects);
+    document.getElementById('add-edu-btn')?.addEventListener('click',openEducationModal);
+    document.getElementById('clear-edu-btn')?.addEventListener('click',clearAllEducations);
+    document.getElementById('add-cert-btn')?.addEventListener('click',openCertModal);
+    document.getElementById('clear-certs-btn')?.addEventListener('click',clearAllCertificates);
+    
+    let resumeUrl=null; function handleResume(e){ let f=e.target.files[0]; if(f){ if(resumeUrl) URL.revokeObjectURL(resumeUrl); resumeUrl=URL.createObjectURL(f); document.getElementById('resume-actions').style.display='flex'; document.getElementById('resume-actions').innerHTML=`<a href="${resumeUrl}" target="_blank" class="resume-action-btn"><i class="fas fa-eye"></i><span>View</span></a> <a href="${resumeUrl}" download="${f.name}" class="resume-action-btn"><i class="fas fa-download"></i><span>Download</span></a>`; showToast("Resume uploaded"); } } document.getElementById('resume-input')?.addEventListener('change',handleResume);
+    
+    const heroImg = document.getElementById('heroProfileImg');
+    function handleImageUpload(e) { let file=e.target.files[0]; if(file){ let reader=new FileReader(); reader.onload=ev=>{ document.getElementById('modal-profile-img').src=ev.target.result; }; reader.readAsDataURL(file); } }
+    function removeProfileImage() { const defaultImg = 'https://ui-avatars.com/api/?name=Dheena+Cembeti&background=10B981&color=fff'; document.getElementById('modal-profile-img').src = defaultImg; document.getElementById('profile-img-input').value = ''; }
+    function openProfileModal() { document.getElementById('profile-modal').classList.add('active'); }
+    function closeProfileModal() { document.getElementById('profile-modal').classList.remove('active'); }
+    function updateProfile() { 
+        let firstName = document.getElementById('firstName').value.trim();
+        let middleName = document.getElementById('middleName').value.trim();
+        let lastName = document.getElementById('lastName').value.trim();
+        let fullName = `${firstName} ${middleName} ${lastName}`.replace(/\s+/g, ' ').trim() || "Dheena Cembeti";
+        let role = document.getElementById('profile-role').value.trim() || "Java Full Stack Developer";
+        let profileImage = document.getElementById('modal-profile-img').src;
+        let bio = document.getElementById('bio').value.trim();
+        let github = document.getElementById('github-link').value.trim();
+        let linkedin = document.getElementById('linkedin-link').value.trim();
+        let email = document.getElementById('email').value.trim();
+        let phone = document.getElementById('phone').value.trim();
+        if (!firstName || !lastName) { alert("First and Last Name are required"); return; }
+        let data = { firstName, middleName, lastName, fullName, role, profileImage, bio, githubLink: github, linkedinLink: linkedin, email, phone };
+        localStorage.setItem('userProfile', JSON.stringify(data));
+        updateNavbar(data);
+        updateHero(data);
+        updateContactPhone(phone);
+        closeProfileModal();
+        showToast("Profile saved successfully!");
+    }
+    function loadProfile() { 
+        let saved = localStorage.getItem('userProfile'); 
+        if (saved) { 
+            let p = JSON.parse(saved); 
+            document.getElementById('firstName').value = p.firstName || ''; 
+            document.getElementById('middleName').value = p.middleName || ''; 
+            document.getElementById('lastName').value = p.lastName || ''; 
+            document.getElementById('profile-role').value = p.role || ''; 
+            document.getElementById('bio').value = p.bio || ''; 
+            document.getElementById('github-link').value = p.githubLink || ''; 
+            document.getElementById('linkedin-link').value = p.linkedinLink || ''; 
+            document.getElementById('email').value = p.email || ''; 
+            document.getElementById('phone').value = p.phone || '+91 9490969431'; 
+            if (p.profileImage) { 
+                document.getElementById('modal-profile-img').src = p.profileImage; 
+                heroImg.src = p.profileImage; 
+                document.getElementById('navbar-profile-img').src = p.profileImage; 
+            } 
+            updateNavbar(p); 
+            updateHero(p); 
+            updateContactPhone(p.phone); 
+        } else { 
+            document.getElementById('firstName').value = 'Dheena'; 
+            document.getElementById('lastName').value = 'Cembeti'; 
+            document.getElementById('profile-role').value = 'Java Full Stack Developer'; 
+            document.getElementById('phone').value = '+91 9490969431'; 
+            document.getElementById('email').value = 'dheena.dev2025@gmail.com'; 
+            updateContactPhone('+91 9490969431'); 
+            updateNavbar({fullName:'Dheena Cembeti', role:'Java Full Stack Developer', profileImage:'https://ui-avatars.com/api/?name=Dheena+Cembeti&background=10B981&color=fff'}); 
+            updateHero({fullName:'Dheena Cembeti', role:'Java Full Stack Developer', profileImage:'https://ui-avatars.com/api/?name=Dheena+Cembeti&background=10B981&color=fff'}); 
+        } 
+    }
+    function updateNavbar(p){ document.getElementById('navbar-profile-img').src = p.profileImage; document.getElementById('navbar-name').innerText = p.fullName || 'Dheena'; document.getElementById('navbar-role').innerText = p.role || 'Developer'; }
+    function updateHero(p){ heroImg.src = p.profileImage; document.querySelector('.profile-name').innerText = p.fullName || 'Dheena Cembeti'; let parts = (p.role || 'Java Fullstack Developer').split(' '); let roleEl = document.querySelector('.profile-role'); if(roleEl) roleEl.innerHTML = `<span class="role-fixed" style="background:linear-gradient(135deg, var(--primary), var(--primary-dark)); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">${parts[0]}</span> <span>${parts.slice(1).join(' ')}</span>`; let bioEl = document.getElementById('profile-bio'); if(p.bio && p.bio.trim()){ bioEl.innerText = p.bio; bioEl.style.display = 'block'; } else bioEl.style.display = 'none'; let gitLink = document.getElementById('github-icon-link'); let linkedinLink = document.getElementById('linkedin-icon-link'); let emailLink = document.getElementById('email-icon-link'); if(p.githubLink){ gitLink.href = p.githubLink; gitLink.style.display = 'inline-flex'; } else gitLink.style.display = 'none'; if(p.linkedinLink){ linkedinLink.href = p.linkedinLink; linkedinLink.style.display = 'inline-flex'; } else linkedinLink.style.display = 'none'; if(p.email){ emailLink.href = `mailto:${p.email}`; emailLink.style.display = 'inline-flex'; } else emailLink.style.display = 'none'; }
+    document.getElementById('profile-img-input')?.addEventListener('change', handleImageUpload);
+    
+    const menuToggle = document.getElementById('menuToggle'); const nav = document.getElementById('navbar'); 
+    if(menuToggle){ 
+        menuToggle.addEventListener('click', (e) => { e.stopPropagation(); nav.classList.toggle('open'); }); 
+        document.addEventListener('click', (e) => { if(nav.classList.contains('open') && !nav.contains(e.target) && e.target !== menuToggle) nav.classList.remove('open'); }); 
+    }
+    const observer = new IntersectionObserver(entries => { entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('active'); }); }, {threshold:0.1}); 
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    renderAbout(); renderSkills(); renderExperiences(); renderProjects(); renderEducations(); renderCertifications(); loadProfile();
+</script>
+</body>
+</html>
