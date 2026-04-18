@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!-- Improved viewport for mobile -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
     <link rel="icon" type="image/png" sizes="any" href="./assets/logo.png">
     <title>Dheena Cembeti | Portfolio</title>
@@ -18,22 +17,22 @@
         }
 
         :root {
-            --primary: #10B981;
-            --primary-dark: #059669;
-            --primary-light: #D1FAE5;
-            --accent: #34D399;
-            --text-main: #064E3B;
-            --text-secondary: #047857;
+            --primary: #23AEB7;
+            --primary-dark: #1A8A91;
+            --primary-light: #C8F0F2;
+            --accent: #4AC7D1;
+            --text-main: #0F5C63;
+            --text-secondary: #15858F;
             --bg: #FFFFFF;
-            --bg-dark: #022C22;
-            --section-bg: #F0FDF4;
+            --bg-dark: #083C40;
+            --section-bg: #E0F4F6;
             --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.02);
             --transition: all 0.3s ease;
         }
 
         body {
             font-family: 'Inter', system-ui, -apple-system, sans-serif;
-            background: linear-gradient(135deg, #F9FAFB 0%, #F0FDF4 100%);
+            background: linear-gradient(135deg, #F9FAFB 0%, #E0F4F6 100%);
             color: var(--text-main);
             line-height: 1.5;
             font-size: 16px;
@@ -73,7 +72,7 @@
             display: flex;
             flex-direction: column;
             z-index: 1000;
-            border-right: 1px solid rgba(16, 185, 129, 0.2);
+            border-right: 1px solid rgba(35, 174, 183, 0.2);
             box-shadow: 4px 0 20px rgba(0, 0, 0, 0.03);
             overflow-y: auto;
             transform: translateX(-100%);
@@ -180,7 +179,7 @@
         }
         .hero {
             min-height: 100vh;
-            background: linear-gradient(125deg, #ECFDF5 0%, #D1FAE5 100%);
+            background: linear-gradient(125deg, #E6F7F8 0%, #C5E9EC 100%);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -213,7 +212,7 @@
             border-radius: 50%;
             object-fit: cover;
             border: 4px solid white;
-            box-shadow: 0 20px 35px rgba(16,185,129,0.25);
+            box-shadow: 0 20px 35px rgba(35, 174, 183, 0.25);
         }
         h2 {
             font-size: clamp(1.6rem, 5vw, 2.2rem);
@@ -245,7 +244,7 @@
             gap: 12px;
         }
         .action-icon {
-            background: rgba(16, 185, 129, 0.12);
+            background: rgba(35, 174, 183, 0.12);
             width: 40px;
             height: 40px;
             border-radius: 50%;
@@ -430,11 +429,66 @@
             gap: 6px;
             text-decoration: none;
             color: var(--primary-dark);
+            font-size: 0.9rem;
         }
-        .resume-action-btn span { display: none; }
+        /* Improved desktop alignment for hero action row */
+        .hero-actions-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 1rem;
+            justify-content: flex-start;
+        }
+        @media (max-width: 640px) {
+            .hero-actions-row {
+                justify-content: center;
+            }
+        }
+        .hero-actions-row .resume-upload-label {
+            background: var(--primary);
+            color: white;
+            padding: 8px 18px;
+            border-radius: 40px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.2s;
+        }
+        .hero-actions-row .resume-upload-label:hover {
+            background: var(--primary-dark);
+        }
+        .resume-actions-group {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+        .social-icons-group {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+        .social-icon-circle {
+            background: var(--primary-light);
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            transition: 0.2s;
+            text-decoration: none;
+        }
+        .social-icon-circle:hover {
+            background: var(--primary);
+            color: white;
+        }
 
         footer {
-            background: linear-gradient(135deg, #022C22, #064E3B);
+            background: linear-gradient(135deg, #083C40, #0F5C63);
             color: white;
             text-align: center;
             padding: 2rem;
@@ -443,7 +497,7 @@
             position: fixed;
             bottom: 20px;
             right: 20px;
-            background: #064E3B;
+            background: #23AEB7;
             color: white;
             padding: 8px 16px;
             border-radius: 40px;
@@ -472,7 +526,6 @@
             box-shadow: 0 0 0 3px white, 0 0 0 6px var(--primary-light);
         }
 
-        /* Extra mobile tweaks */
         @media (max-width: 480px) {
             section {
                 padding: 2rem 1rem;
@@ -501,14 +554,12 @@
 </head>
 <body>
 
-<!-- Menu Overlay for mobile -->
 <div id="menuOverlay" class="menu-overlay" onclick="closeMobileMenu()"></div>
-
 <button class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></button>
 
 <nav id="navbar">
     <div style="text-align: center; margin-bottom: 2rem;">
-        <img id="navbar-profile-img" src="https://ui-avatars.com/api/?name=Dheena+Cembeti&background=10B981&color=fff" style="width: 90px; height: 90px; border-radius: 50%; object-fit: cover; border: 3px solid var(--primary); cursor: pointer; margin-bottom: 0.5rem;" onclick="openProfileModal()">
+        <img id="navbar-profile-img" src="https://ui-avatars.com/api/?name=Dheena+Cembeti&background=23AEB7&color=fff" style="width: 90px; height: 90px; border-radius: 50%; object-fit: cover; border: 3px solid var(--primary); cursor: pointer; margin-bottom: 0.5rem;" onclick="openProfileModal()">
         <div id="navbar-name" style="font-weight: 800;">Dheena</div>
         <div id="navbar-role" style="font-size: 0.75rem; color: var(--text-secondary);">Developer</div>
         <button onclick="openProfileModal()" style="margin-top: 10px; background: var(--primary); color: white; border: none; padding: 6px 16px; border-radius: 40px; font-size: 0.75rem; cursor: pointer;"><i class="fas fa-user-edit"></i> My Profile</button>
@@ -532,82 +583,34 @@
                 <h1 id="hero-name" style="font-size: clamp(1.8rem, 7vw, 2.8rem); word-break: break-word;">Dheena Cembeti</h1>
                 <div id="hero-role" style="font-size: clamp(1rem, 4vw, 1.4rem); font-weight: 700; word-break: break-word;"><span style="background: linear-gradient(135deg, var(--primary), var(--primary-dark)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">Java</span> Fullstack Developer</div>
                 <p id="profile-bio" style="color: var(--text-secondary); margin-top: 0.8rem; display: none; word-break: break-word; white-space: normal;"></p>
-                <div style="display: flex; gap: 0.8rem; flex-wrap: wrap; justify-content: center; margin-top: 1rem;">
-                    <label for="resume-input" style="background: var(--primary); color: white; padding: 8px 18px; border-radius: 40px; cursor: pointer; font-size: 0.9rem;">Upload Resume</label>
+                <!-- Improved desktop alignment row -->
+                <div class="hero-actions-row">
+                    <label for="resume-input" class="resume-upload-label"><i class="fas fa-upload"></i> Upload Resume</label>
                     <input type="file" id="resume-input" style="display: none;" accept=".pdf,.doc,.docx">
-                    <div id="resume-actions" style="display: none; gap: 8px;"></div>
-                    <a id="github-icon-link" href="#" target="_blank" style="display: none; background: var(--primary-light); width: 38px; height: 38px; border-radius: 50%; align-items: center; justify-content: center; color: var(--primary);"><i class="fab fa-github"></i></a>
-                    <a id="email-icon-link" href="#" target="_blank" style="display: none; background: var(--primary-light); width: 38px; height: 38px; border-radius: 50%; align-items: center; justify-content: center;"><i class="fas fa-envelope"></i></a>
-                    <a id="linkedin-icon-link" href="#" target="_blank" style="display: none; background: var(--primary-light); width: 38px; height: 38px; border-radius: 50%; align-items: center; justify-content: center;"><i class="fab fa-linkedin"></i></a>
+                    <div id="resume-actions" class="resume-actions-group" style="display: none;"></div>
+                    <div class="social-icons-group">
+                        <a id="github-icon-link" href="#" target="_blank" class="social-icon-circle" style="display: none;"><i class="fab fa-github"></i></a>
+                        <a id="email-icon-link" href="#" target="_blank" class="social-icon-circle" style="display: none;"><i class="fas fa-envelope"></i></a>
+                        <a id="linkedin-icon-link" href="#" target="_blank" class="social-icon-circle" style="display: none;"><i class="fab fa-linkedin"></i></a>
+                    </div>
                 </div>
             </div>
-            <img id="heroProfileImg" src="assets/Dheena.jpeg" class="profile-img" alt="Profile" onerror="this.src='https://ui-avatars.com/api/?name=Dheena+Cembeti&background=10B981&color=fff'">
+            <img id="heroProfileImg" src="assets/Dheena.jpeg" class="profile-img" alt="Profile" onerror="this.src='https://ui-avatars.com/api/?name=Dheena+Cembeti&background=23AEB7&color=fff'">
         </div>
     </section>
 
-    <section id="about" class="reveal section-content">
-        <div class="section-header"><h2>About</h2><div class="section-actions"><i class="fas fa-plus action-icon" id="edit-about-btn"></i><i class="fas fa-trash-can action-icon danger" id="clear-about-btn"></i></div></div>
-        <div id="about-content" style="word-break: break-word; overflow-wrap: break-word;"></div>
-    </section>
-
-    <section id="skills" class="reveal section-content">
-        <div class="section-header"><h2>Skills</h2><div class="section-actions"><i class="fas fa-plus action-icon" id="add-skill-btn"></i><i class="fas fa-trash-can action-icon danger" id="clear-skills-btn"></i></div></div>
-        <div id="skills-list"></div>
-    </section>
-
-    <section id="experience" class="reveal section-content">
-        <div class="section-header"><h2>Work Experience</h2><div class="section-actions"><i class="fas fa-plus action-icon" id="add-exp-btn"></i><i class="fas fa-trash-can action-icon danger" id="clear-exp-btn"></i></div></div>
-        <div id="experiences-grid" class="grid"></div>
-    </section>
-
-    <section id="projects" class="reveal section-content">
-        <div class="section-header"><h2>Projects</h2><div class="section-actions"><i class="fas fa-plus action-icon" id="add-project-btn"></i><i class="fas fa-trash-can action-icon danger" id="clear-projects-btn"></i></div></div>
-        <div id="projects-grid" class="grid"></div>
-    </section>
-
-    <section id="education" class="reveal section-content">
-        <div class="section-header"><h2>Education</h2><div class="section-actions"><i class="fas fa-plus action-icon" id="add-edu-btn"></i><i class="fas fa-trash-can action-icon danger" id="clear-edu-btn"></i></div></div>
-        <div id="education-grid" class="grid"></div>
-    </section>
-
-    <section id="certifications" class="reveal section-content">
-        <div class="section-header"><h2>Certifications</h2><div class="section-actions"><i class="fas fa-plus action-icon" id="add-cert-btn"></i><i class="fas fa-trash-can action-icon danger" id="clear-certs-btn"></i></div></div>
-        <div id="certifications-grid" class="grid"></div>
-    </section>
+    <section id="about" class="reveal section-content"><div class="section-header"><h2>About</h2><div class="section-actions"><i class="fas fa-plus action-icon" id="edit-about-btn"></i><i class="fas fa-trash-can action-icon danger" id="clear-about-btn"></i></div></div><div id="about-content"></div></section>
+    <section id="skills" class="reveal section-content"><div class="section-header"><h2>Skills</h2><div class="section-actions"><i class="fas fa-plus action-icon" id="add-skill-btn"></i><i class="fas fa-trash-can action-icon danger" id="clear-skills-btn"></i></div></div><div id="skills-list"></div></section>
+    <section id="experience" class="reveal section-content"><div class="section-header"><h2>Work Experience</h2><div class="section-actions"><i class="fas fa-plus action-icon" id="add-exp-btn"></i><i class="fas fa-trash-can action-icon danger" id="clear-exp-btn"></i></div></div><div id="experiences-grid" class="grid"></div></section>
+    <section id="projects" class="reveal section-content"><div class="section-header"><h2>Projects</h2><div class="section-actions"><i class="fas fa-plus action-icon" id="add-project-btn"></i><i class="fas fa-trash-can action-icon danger" id="clear-projects-btn"></i></div></div><div id="projects-grid" class="grid"></div></section>
+    <section id="education" class="reveal section-content"><div class="section-header"><h2>Education</h2><div class="section-actions"><i class="fas fa-plus action-icon" id="add-edu-btn"></i><i class="fas fa-trash-can action-icon danger" id="clear-edu-btn"></i></div></div><div id="education-grid" class="grid"></div></section>
+    <section id="certifications" class="reveal section-content"><div class="section-header"><h2>Certifications</h2><div class="section-actions"><i class="fas fa-plus action-icon" id="add-cert-btn"></i><i class="fas fa-trash-can action-icon danger" id="clear-certs-btn"></i></div></div><div id="certifications-grid" class="grid"></div></section>
 </main>
 
 <footer id="contact" class="section-content"><h2 style="color: white;">Let's Connect</h2><p>📞 <span id="contact-phone-number">+91 9490969431</span></p><p>✉️ dheena.dev2025@gmail.com</p><div><a href="#" style="color: var(--accent);">LinkedIn</a> • <a href="#" style="color: var(--accent);">GitHub</a></div><p style="margin-top: 1.5rem;">© 2025 Dheena Cembeti</p></footer>
 
-<!-- Profile Modal -->
-<div id="profile-modal" class="modal-overlay">
-    <div class="modal-content">
-        <button onclick="closeProfileModal()" style="float:right; background:none; border:none; font-size:1.6rem; cursor:pointer;">&times;</button>
-        <div class="modal-body" style="display: flex; gap: 1rem; flex-wrap: wrap;">
-            <div style="text-align: center;">
-                <img id="modal-profile-img" class="modal-profile-img" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 8px;">
-                <div class="profile-img-actions">
-                    <label for="profile-img-input" class="icon-btn-circle"><i class="fas fa-camera"></i></label>
-                    <input type="file" id="profile-img-input" style="display: none;" accept="image/*">
-                    <button onclick="removeProfileImage()" class="icon-btn-circle danger"><i class="fas fa-trash-alt"></i></button>
-                </div>
-            </div>
-            <div style="flex:1;">
-                <div class="form-group"><label class="form-label">First Name</label><input type="text" id="firstName" class="form-input" placeholder="First Name"></div>
-                <div class="form-group"><label class="form-label">Middle Name</label><input type="text" id="middleName" class="form-input" placeholder="Middle Name"></div>
-                <div class="form-group"><label class="form-label">Last Name</label><input type="text" id="lastName" class="form-input" placeholder="Last Name"></div>
-                <div class="form-group"><label class="form-label">Role / Job Title</label><input type="text" id="profile-role" class="form-input" placeholder="e.g., Java Full Stack Developer"></div>
-                <div class="form-group"><label class="form-label">Phone Number</label><input type="tel" id="phone" class="form-input" placeholder="+91 9490969431"></div>
-                <div class="form-group"><label class="form-label">Email Address</label><input type="email" id="email" class="form-input" placeholder="your.email@gmail.com"></div>
-                <div class="form-group"><label class="form-label">Professional Bio</label><textarea id="bio" class="form-textarea" rows="2" placeholder="Short bio..."></textarea></div>
-                <div class="form-group"><label class="form-label">GitHub Profile</label><input type="url" id="github-link" class="form-input" placeholder="https://github.com/"></div>
-                <div class="form-group"><label class="form-label">LinkedIn Profile</label><input type="url" id="linkedin-link" class="form-input" placeholder="https://linkedin.com/"></div>
-            </div>
-        </div>
-        <div class="form-actions"><button class="btn-secondary" onclick="closeProfileModal()">Cancel</button><button class="btn-primary" onclick="updateProfile()">Save Profile</button></div>
-    </div>
-</div>
-
-<!-- Other Modals (unchanged) -->
+<!-- Modals (unchanged) -->
+<div id="profile-modal" class="modal-overlay"><div class="modal-content"><button onclick="closeProfileModal()" style="float:right; background:none; border:none; font-size:1.6rem; cursor:pointer;">&times;</button><div class="modal-body" style="display: flex; gap: 1rem; flex-wrap: wrap;"><div style="text-align: center;"><img id="modal-profile-img" class="modal-profile-img" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 8px;"><div class="profile-img-actions"><label for="profile-img-input" class="icon-btn-circle"><i class="fas fa-camera"></i></label><input type="file" id="profile-img-input" style="display: none;" accept="image/*"><button onclick="removeProfileImage()" class="icon-btn-circle danger"><i class="fas fa-trash-alt"></i></button></div></div><div style="flex:1;"><div class="form-group"><label class="form-label">First Name</label><input type="text" id="firstName" class="form-input" placeholder="First Name"></div><div class="form-group"><label class="form-label">Middle Name</label><input type="text" id="middleName" class="form-input" placeholder="Middle Name"></div><div class="form-group"><label class="form-label">Last Name</label><input type="text" id="lastName" class="form-input" placeholder="Last Name"></div><div class="form-group"><label class="form-label">Role / Job Title</label><input type="text" id="profile-role" class="form-input" placeholder="e.g., Java Full Stack Developer"></div><div class="form-group"><label class="form-label">Phone Number</label><input type="tel" id="phone" class="form-input" placeholder="+91 9490969431"></div><div class="form-group"><label class="form-label">Email Address</label><input type="email" id="email" class="form-input" placeholder="your.email@gmail.com"></div><div class="form-group"><label class="form-label">Professional Bio</label><textarea id="bio" class="form-textarea" rows="2" placeholder="Short bio..."></textarea></div><div class="form-group"><label class="form-label">GitHub Profile</label><input type="url" id="github-link" class="form-input" placeholder="https://github.com/"></div><div class="form-group"><label class="form-label">LinkedIn Profile</label><input type="url" id="linkedin-link" class="form-input" placeholder="https://linkedin.com/"></div></div></div><div class="form-actions"><button class="btn-secondary" onclick="closeProfileModal()">Cancel</button><button class="btn-primary" onclick="updateProfile()">Save Profile</button></div></div></div>
 <div id="about-modal" class="form-modal"><div class="form-modal-content"><h3>Edit About</h3><div class="form-group"><label class="form-label">Description</label><textarea id="about-textarea" class="form-textarea" rows="4"></textarea></div><div class="form-actions"><button class="btn-secondary" onclick="closeAboutModal()">Cancel</button><button class="btn-primary" onclick="saveAbout()">Save</button></div></div></div>
 <div id="skills-modal" class="form-modal"><div class="form-modal-content"><h3>Add Skills Category</h3><div class="form-group"><label class="form-label">Category Name</label><input type="text" id="category-input" class="form-input" placeholder="e.g., Backend"></div><div class="form-group"><label class="form-label">Skills (add one by one)</label><div class="skill-input-group" style="display: flex; gap: 10px;"><input type="text" id="new-skill-input" class="form-input" placeholder="e.g., Java"><button onclick="addSkillToTemp()" class="btn-primary" style="padding: 0 16px;">Add</button></div><div id="skills-preview" style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px;"></div></div><div class="form-actions"><button class="btn-secondary" onclick="closeSkillsModal()">Cancel</button><button class="btn-primary" onclick="saveCategory()">Add Category</button></div></div></div>
 <div id="exp-modal" class="form-modal"><div class="form-modal-content"><h3>Add Work Experience</h3><div class="form-group"><label class="form-label">Company Name</label><input type="text" id="exp-company" class="form-input"></div><div class="form-group"><label class="form-label">Role / Title</label><input type="text" id="exp-role" class="form-input"></div><div class="form-group"><label class="form-label">Location</label><input type="text" id="exp-location" class="form-input" placeholder="e.g., Hyderabad, TG"></div><div class="form-group"><label class="form-label">Start Date</label><input type="month" id="exp-start" class="form-input"></div><div class="form-group"><label class="form-label">End Date (or Present)</label><input type="month" id="exp-end" class="form-input"></div><div class="form-group"><label class="form-label">Description</label><textarea id="exp-desc" class="form-textarea" rows="4"></textarea></div><div class="form-actions"><button class="btn-secondary" onclick="closeExpModal()">Cancel</button><button class="btn-primary" onclick="saveExperience()">Add Experience</button></div></div></div>
@@ -616,7 +619,7 @@
 <div id="cert-modal" class="form-modal"><div class="form-modal-content"><h3>Add Certification</h3><div class="form-group"><label class="form-label">Issued By</label><input type="text" id="cert-issued-by" class="form-input"></div><div class="form-group"><label class="form-label">Domain / Name</label><input type="text" id="cert-domain" class="form-input"></div><div class="form-group"><label class="form-label">Certificate File</label><input type="file" id="cert-file" accept=".pdf,.jpg,.png"></div><div class="form-actions"><button class="btn-secondary" onclick="closeCertModal()">Cancel</button><button class="btn-primary" onclick="saveCertificate()">Add Certificate</button></div></div></div>
 
 <script>
-    // ---------- ALL JAVASCRIPT (FULLY FUNCTIONAL) ----------
+    // ---------- ALL DATA PERSISTED IN localStorage (LIVE ON VERCEL) ----------
     let aboutText = localStorage.getItem('dynamic_about') || "I am a Java Full Stack Developer with experience in designing and developing scalable applications using Spring Boot and REST APIs. During my internship at KR Mroads, I worked on multiple real-time projects including Panna ATS, Timesheets, and Recruit systems. I focus on writing clean, maintainable code and building efficient backend systems.";
     let skillsList = JSON.parse(localStorage.getItem('dynamic_skills'));
     if (!skillsList || !Array.isArray(skillsList) || (skillsList.length > 0 && typeof skillsList[0] === 'string')) {
@@ -640,6 +643,10 @@
     ];
     let certificates = JSON.parse(localStorage.getItem('dynamic_certificates')) || [];
 
+    // Resume persistence
+    let resumeData = localStorage.getItem('resumeFileData'); // dataURL
+    let resumeFileName = localStorage.getItem('resumeFileName');
+
     function saveAll() { 
         localStorage.setItem('dynamic_about', aboutText); 
         localStorage.setItem('dynamic_skills', JSON.stringify(skillsList)); 
@@ -648,7 +655,7 @@
         localStorage.setItem('dynamic_educations', JSON.stringify(educations)); 
         localStorage.setItem('dynamic_certificates', JSON.stringify(certificates)); 
     }
-    function showToast(msg, isError = false) { let t = document.createElement('div'); t.className = 'toast-notify'; t.innerText = msg; t.style.background = isError ? '#EF4444' : '#10B981'; document.body.appendChild(t); setTimeout(() => t.remove(), 2000); }
+    function showToast(msg, isError = false) { let t = document.createElement('div'); t.className = 'toast-notify'; t.innerText = msg; t.style.background = isError ? '#EF4444' : '#23AEB7'; document.body.appendChild(t); setTimeout(() => t.remove(), 2000); }
     function escapeHtml(str) { if(!str) return ''; return str.replace(/[&<>]/g, function(m){if(m==='&') return '&amp;'; if(m==='<') return '&lt;'; if(m==='>') return '&gt;'; return m;}); }
     function formatMonthYear(dateStr) { if (!dateStr) return ''; const [year, month] = dateStr.split('-'); if (!year || !month) return dateStr; const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']; return `${monthNames[parseInt(month)-1]} ${year}`; }
     
@@ -662,14 +669,47 @@
     window.viewCertificate = function(idx) { let cert = certificates[idx]; if(cert && cert.fileData) { let blob = dataURLToBlob(cert.fileData); let url = URL.createObjectURL(blob); window.open(url, '_blank'); setTimeout(() => URL.revokeObjectURL(url), 5000); } else showToast("Cannot open",true); };
     window.downloadCertificate = function(idx) { let cert = certificates[idx]; if(cert && cert.fileData) { let a = document.createElement('a'); a.href = cert.fileData; a.download = cert.fileName || 'certificate'; a.click(); } else showToast("Not found",true); };
     function updateContactPhone(phone) { document.getElementById('contact-phone-number').innerText = phone || '+91 9490969431'; }
-    
+
+    // Resume persistence helpers
+    function updateResumeUI(dataUrl, fileName) {
+        const actionsDiv = document.getElementById('resume-actions');
+        if (dataUrl && fileName) {
+            actionsDiv.style.display = 'flex';
+            actionsDiv.innerHTML = `<a href="${dataUrl}" target="_blank" class="resume-action-btn"><i class="fas fa-eye"></i> View</a> <a href="${dataUrl}" download="${fileName}" class="resume-action-btn"><i class="fas fa-download"></i> Download</a>`;
+        } else {
+            actionsDiv.style.display = 'none';
+            actionsDiv.innerHTML = '';
+        }
+    }
+    function handleResumeUpload(e) {
+        let file = e.target.files[0];
+        if (file) {
+            let reader = new FileReader();
+            reader.onload = function(ev) {
+                let dataUrl = ev.target.result;
+                localStorage.setItem('resumeFileData', dataUrl);
+                localStorage.setItem('resumeFileName', file.name);
+                updateResumeUI(dataUrl, file.name);
+                showToast("Resume uploaded & saved");
+            };
+            reader.readAsDataURL(file);
+        }
+    }
+    function loadStoredResume() {
+        let storedData = localStorage.getItem('resumeFileData');
+        let storedName = localStorage.getItem('resumeFileName');
+        if (storedData && storedName) {
+            updateResumeUI(storedData, storedName);
+        }
+    }
+
+    // Skills temp array and modals (unchanged functionality)
     let tempSkillsArray = [];
     function openSkillsModal() { tempSkillsArray = []; document.getElementById('category-input').value = ''; document.getElementById('new-skill-input').value = ''; document.getElementById('skills-preview').innerHTML = ''; document.getElementById('skills-modal').classList.add('active'); }
     function addSkillToTemp() { let s = document.getElementById('new-skill-input').value.trim(); if(s) { tempSkillsArray.push(s); document.getElementById('new-skill-input').value = ''; document.getElementById('skills-preview').innerHTML = tempSkillsArray.map((sk,i)=>`<span class="skill-tag" style="background:var(--primary-light); padding:4px 12px; border-radius:20px;">${escapeHtml(sk)} <i class="fas fa-times" onclick="removeTempSkill(${i})" style="cursor:pointer;"></i></span>`).join(''); } }
     function removeTempSkill(i) { tempSkillsArray.splice(i,1); document.getElementById('skills-preview').innerHTML = tempSkillsArray.map((sk,i)=>`<span class="skill-tag" style="background:var(--primary-light); padding:4px 12px; border-radius:20px;">${escapeHtml(sk)} <i class="fas fa-times" onclick="removeTempSkill(${i})" style="cursor:pointer;"></i></span>`).join(''); }
     function saveCategory() { let cat = document.getElementById('category-input').value.trim(); if(!cat) { showToast("Category name required",true); return; } if(tempSkillsArray.length===0) { showToast("Add at least one skill",true); return; } skillsList.push({ category: cat, items: [...tempSkillsArray] }); saveAll(); renderSkills(); closeSkillsModal(); showToast(`Category "${cat}" added`); }
     function closeSkillsModal() { document.getElementById('skills-modal').classList.remove('active'); }
-    
     function openExpModal() { document.getElementById('exp-modal').classList.add('active'); } 
     function closeExpModal() { document.getElementById('exp-modal').classList.remove('active'); }
     function saveExperience() { 
@@ -688,7 +728,6 @@
         document.getElementById('exp-company').value = ''; document.getElementById('exp-role').value = ''; document.getElementById('exp-location').value = ''; document.getElementById('exp-start').value = ''; document.getElementById('exp-end').value = ''; document.getElementById('exp-desc').value = '';
         showToast("Experience added");
     }
-    
     function openProjectModal() { document.getElementById('project-modal').classList.add('active'); } 
     function closeProjectModal() { document.getElementById('project-modal').classList.remove('active'); }
     function saveProject() { 
@@ -701,7 +740,6 @@
         document.getElementById('project-title').value = ''; document.getElementById('project-desc').value = ''; document.getElementById('project-tech').value = '';
         showToast("Project added");
     }
-    
     function openEducationModal() { document.getElementById('education-modal').classList.add('active'); } 
     function closeEducationModal() { document.getElementById('education-modal').classList.remove('active'); }
     function saveEducation() { 
@@ -720,18 +758,20 @@
         document.getElementById('edu-field').value = ''; document.getElementById('edu-college').value = ''; document.getElementById('edu-location').value = ''; document.getElementById('edu-start').value = ''; document.getElementById('edu-end').value = '';
         showToast("Education added");
     }
-    
-    function openCertModal() { document.getElementById('cert-modal').classList.add('active'); } function closeCertModal() { document.getElementById('cert-modal').classList.remove('active'); document.getElementById('cert-issued-by').value=''; document.getElementById('cert-domain').value=''; document.getElementById('cert-file').value=''; }
+    function openCertModal() { document.getElementById('cert-modal').classList.add('active'); } 
+    function closeCertModal() { document.getElementById('cert-modal').classList.remove('active'); document.getElementById('cert-issued-by').value=''; document.getElementById('cert-domain').value=''; document.getElementById('cert-file').value=''; }
     function saveCertificate() { let issuedBy=document.getElementById('cert-issued-by').value.trim(); let domain=document.getElementById('cert-domain').value.trim(); let file=document.getElementById('cert-file').files[0]; if(!issuedBy||!domain) { showToast("Issued By and Domain required",true); return; } if(!file) { showToast("Please select file",true); return; } let reader=new FileReader(); reader.onload=e=>{ certificates.push({issuedBy,domain,fileData:e.target.result,fileName:file.name,fileType:file.type}); saveAll(); renderCertifications(); closeCertModal(); showToast("Certification added"); }; reader.readAsDataURL(file); }
-    function openAboutModal() { document.getElementById('about-textarea').value=aboutText; document.getElementById('about-modal').classList.add('active'); } function closeAboutModal() { document.getElementById('about-modal').classList.remove('active'); } function saveAbout() { aboutText=document.getElementById('about-textarea').value.trim(); saveAll(); renderAbout(); closeAboutModal(); showToast("About updated"); }
+    function openAboutModal() { document.getElementById('about-textarea').value=aboutText; document.getElementById('about-modal').classList.add('active'); } 
+    function closeAboutModal() { document.getElementById('about-modal').classList.remove('active'); } 
+    function saveAbout() { aboutText=document.getElementById('about-textarea').value.trim(); saveAll(); renderAbout(); closeAboutModal(); showToast("About updated"); }
     function clearAbout() { if(confirm("Remove about?")) { aboutText=""; saveAll(); renderAbout(); showToast("About removed"); } }
     function clearAllSkills() { if(confirm("Remove all skills?")) { skillsList=[]; saveAll(); renderSkills(); showToast("All skills cleared"); } }
     function clearAllExperiences() { if(confirm("Remove all experiences?")) { experiences=[]; saveAll(); renderExperiences(); showToast("All experiences removed"); } }
     function clearAllProjects() { if(confirm("Remove all projects?")) { projectsList=[]; saveAll(); renderProjects(); showToast("All projects cleared"); } }
     function clearAllEducations() { if(confirm("Remove all education?")) { educations=[]; saveAll(); renderEducations(); showToast("All education cleared"); } }
     function clearAllCertificates() { if(confirm("Remove all certifications?")) { certificates=[]; saveAll(); renderCertifications(); showToast("All certifications cleared"); } }
-    
-    // navigation
+
+    // Navigation
     const sections = document.querySelectorAll('.section-content');
     const heroEl = document.querySelector('.hero');
     function showOnlySection(sectionId) { sections.forEach(s => { s.style.display = s.id === sectionId ? 'block' : 'none'; }); if(heroEl) heroEl.style.display = 'flex'; }
@@ -763,11 +803,13 @@
     document.getElementById('add-cert-btn')?.addEventListener('click',openCertModal);
     document.getElementById('clear-certs-btn')?.addEventListener('click',clearAllCertificates);
     
-    let resumeUrl=null; function handleResume(e){ let f=e.target.files[0]; if(f){ if(resumeUrl) URL.revokeObjectURL(resumeUrl); resumeUrl=URL.createObjectURL(f); document.getElementById('resume-actions').style.display='flex'; document.getElementById('resume-actions').innerHTML=`<a href="${resumeUrl}" target="_blank" class="resume-action-btn"><i class="fas fa-eye"></i><span>View</span></a> <a href="${resumeUrl}" download="${f.name}" class="resume-action-btn"><i class="fas fa-download"></i><span>Download</span></a>`; showToast("Resume uploaded"); } } document.getElementById('resume-input')?.addEventListener('change',handleResume);
+    const resumeInput = document.getElementById('resume-input');
+    if (resumeInput) resumeInput.addEventListener('change', handleResumeUpload);
     
+    // Profile image and profile data persistence (already in localStorage)
     const heroImg = document.getElementById('heroProfileImg');
     function handleImageUpload(e) { let file=e.target.files[0]; if(file){ let reader=new FileReader(); reader.onload=ev=>{ document.getElementById('modal-profile-img').src=ev.target.result; }; reader.readAsDataURL(file); } }
-    function removeProfileImage() { const defaultImg = 'https://ui-avatars.com/api/?name=Dheena+Cembeti&background=10B981&color=fff'; document.getElementById('modal-profile-img').src = defaultImg; document.getElementById('profile-img-input').value = ''; }
+    function removeProfileImage() { const defaultImg = 'https://ui-avatars.com/api/?name=Dheena+Cembeti&background=23AEB7&color=fff'; document.getElementById('modal-profile-img').src = defaultImg; document.getElementById('profile-img-input').value = ''; }
     function openProfileModal() { document.getElementById('profile-modal').classList.add('active'); }
     function closeProfileModal() { document.getElementById('profile-modal').classList.remove('active'); }
     function updateProfile() { 
@@ -847,47 +889,29 @@
             document.getElementById('phone').value = '+91 9490969431'; 
             document.getElementById('email').value = 'dheena.dev2025@gmail.com'; 
             updateContactPhone('+91 9490969431'); 
-            let defaultProfile = { fullName: 'Dheena Cembeti', role: 'Java Full Stack Developer', profileImage: 'https://ui-avatars.com/api/?name=Dheena+Cembeti&background=10B981&color=fff', bio: '', githubLink: '', linkedinLink: '', email: 'dheena.dev2025@gmail.com', phone: '+91 9490969431' };
+            let defaultProfile = { fullName: 'Dheena Cembeti', role: 'Java Full Stack Developer', profileImage: 'https://ui-avatars.com/api/?name=Dheena+Cembeti&background=23AEB7&color=fff', bio: '', githubLink: '', linkedinLink: '', email: 'dheena.dev2025@gmail.com', phone: '+91 9490969431' };
             updateNavbar(defaultProfile); 
             updateHero(defaultProfile); 
         } 
     }
     document.getElementById('profile-img-input')?.addEventListener('change', handleImageUpload);
     
-    // Mobile menu functions
+    // Mobile menu
     const menuToggle = document.getElementById('menuToggle');
     const navBar = document.getElementById('navbar');
     const overlay = document.getElementById('menuOverlay');
-    
-    function openMobileMenu() {
-        navBar.classList.add('open');
-        overlay.classList.add('active');
-        document.body.style.overflow = 'hidden';
-    }
-    function closeMobileMenu() {
-        navBar.classList.remove('open');
-        overlay.classList.remove('active');
-        document.body.style.overflow = '';
-    }
+    function openMobileMenu() { navBar.classList.add('open'); overlay.classList.add('active'); document.body.style.overflow = 'hidden'; }
+    function closeMobileMenu() { navBar.classList.remove('open'); overlay.classList.remove('active'); document.body.style.overflow = ''; }
     if (menuToggle) {
-        menuToggle.addEventListener('click', (e) => {
-            e.stopPropagation();
-            if (navBar.classList.contains('open')) {
-                closeMobileMenu();
-            } else {
-                openMobileMenu();
-            }
-        });
-        document.addEventListener('click', (e) => {
-            if (navBar.classList.contains('open') && !navBar.contains(e.target) && e.target !== menuToggle && !overlay.contains(e.target)) {
-                closeMobileMenu();
-            }
-        });
+        menuToggle.addEventListener('click', (e) => { e.stopPropagation(); if (navBar.classList.contains('open')) closeMobileMenu(); else openMobileMenu(); });
+        document.addEventListener('click', (e) => { if (navBar.classList.contains('open') && !navBar.contains(e.target) && e.target !== menuToggle && !overlay.contains(e.target)) closeMobileMenu(); });
     }
     
     const observer = new IntersectionObserver(entries => { entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('active'); }); }, {threshold:0.1}); 
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-    renderAbout(); renderSkills(); renderExperiences(); renderProjects(); renderEducations(); renderCertifications(); loadProfile();
+    
+    // Initial render
+    renderAbout(); renderSkills(); renderExperiences(); renderProjects(); renderEducations(); renderCertifications(); loadProfile(); loadStoredResume();
 </script>
 </body>
 </html>
