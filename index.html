@@ -400,6 +400,14 @@
             padding: 1.5rem;
         }
 
+        /* Fix modal alignment: center the body content horizontally */
+        .modal-body {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
         .form-actions { display: flex; gap: 12px; justify-content: flex-end; margin-top: 1.5rem; }
         .btn-primary {
             background: var(--primary);
@@ -562,6 +570,9 @@
                 width: 36px;
                 height: 36px;
             }
+            .modal-body {
+                justify-content: center;
+            }
         }
     </style>
 </head>
@@ -571,12 +582,11 @@
 <button class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></button>
 
 <nav id="navbar">
-    <div style="text-align: center; margin-bottom: 2rem;">
+    <div style="display: flex; flex-direction: column; align-items: center; margin-bottom: 2rem;">
         <img id="navbar-profile-img" src="https://ui-avatars.com/api/?name=Dheena+Cembeti&background=23AEB7&color=fff" style="width: 90px; height: 90px; border-radius: 50%; object-fit: cover; border: 3px solid var(--primary); cursor: pointer; margin-bottom: 0.5rem;" onclick="if(window.isAdmin) openProfileModal()">
         <div id="navbar-name" style="font-weight: 800;">Dheena</div>
         <div id="navbar-role" style="font-size: 0.75rem; color: var(--text-secondary);">Developer</div>
-        <button id="editProfileBtn" onclick="openProfileModal()" class="admin-only" style="margin-top: 10px; background: var(--primary); color: white; border: none; padding: 6px 16px; border-radius: 40px; font-size: 0.75rem; cursor: pointer;"><i class="fas fa-user-edit"></i> My Profile</button>
-        <button id="exportBtn" onclick="exportHTML()" class="admin-only" style="margin-top: 8px; background: var(--primary-light); color: var(--primary-dark); border: none; padding: 6px 16px; border-radius: 40px; font-size: 0.75rem; cursor: pointer;"><i class="fas fa-download"></i> Export as HTML</button>
+        <button id="editProfileBtn" onclick="openProfileModal()" class="admin-only" style="margin-top: 10px; background: var(--primary); color: white; border: none; padding: 6px 16px; border-radius: 40px; font-size: 0.75rem; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;"><i class="fas fa-user-edit"></i> My Profile</button>
     </div>
     <div class="nav-links">
         <a href="#home"><i class="fas fa-home"></i> Home</a>
@@ -645,8 +655,8 @@
 
 <footer id="contact" class="section-content" ondblclick="requestAdminAccess()"><h2 style="color: white;">Let's Connect</h2><p>📞 <span id="contact-phone-number">+91 9490969431</span></p><p>✉️ dheena.dev2025@gmail.com</p><div><a href="#" style="color: var(--accent);">LinkedIn</a> • <a href="#" style="color: var(--accent);">GitHub</a></div><p style="margin-top: 1.5rem;">© 2025 Dheena Cembeti (double‑click to enter admin mode)</p></footer>
 
-<!-- Modals (unchanged) -->
-<div id="profile-modal" class="modal-overlay"><div class="modal-content"><button onclick="closeProfileModal()" style="float:right; background:none; border:none; font-size:1.6rem; cursor:pointer;">&times;</button><div class="modal-body" style="display: flex; gap: 1rem; flex-wrap: wrap;"><div style="text-align: center;"><img id="modal-profile-img" class="modal-profile-img" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 8px;"><div class="profile-img-actions admin-only"><label for="profile-img-input" class="icon-btn-circle"><i class="fas fa-camera"></i></label><input type="file" id="profile-img-input" style="display: none;" accept="image/*"><button onclick="removeProfileImage()" class="icon-btn-circle danger"><i class="fas fa-trash-alt"></i></button></div></div><div style="flex:1;"><div class="form-group"><label class="form-label">First Name</label><input type="text" id="firstName" class="form-input" placeholder="First Name"></div><div class="form-group"><label class="form-label">Middle Name</label><input type="text" id="middleName" class="form-input" placeholder="Middle Name"></div><div class="form-group"><label class="form-label">Last Name</label><input type="text" id="lastName" class="form-input" placeholder="Last Name"></div><div class="form-group"><label class="form-label">Role / Job Title</label><input type="text" id="profile-role" class="form-input" placeholder="e.g., Java Full Stack Developer"></div><div class="form-group"><label class="form-label">Phone Number</label><input type="tel" id="phone" class="form-input" placeholder="+91 9490969431"></div><div class="form-group"><label class="form-label">Email Address</label><input type="email" id="email" class="form-input" placeholder="your.email@gmail.com"></div><div class="form-group"><label class="form-label">Professional Bio</label><textarea id="bio" class="form-textarea" rows="2" placeholder="Short bio..."></textarea></div><div class="form-group"><label class="form-label">GitHub Profile</label><input type="url" id="github-link" class="form-input" placeholder="https://github.com/"></div><div class="form-group"><label class="form-label">LinkedIn Profile</label><input type="url" id="linkedin-link" class="form-input" placeholder="https://linkedin.com/"></div></div></div><div class="form-actions"><button class="btn-secondary" onclick="closeProfileModal()">Cancel</button><button class="btn-primary" onclick="updateProfile()">Save Profile</button></div></div></div>
+<!-- Modals -->
+<div id="profile-modal" class="modal-overlay"><div class="modal-content"><button onclick="closeProfileModal()" style="float:right; background:none; border:none; font-size:1.6rem; cursor:pointer;">&times;</button><div class="modal-body"><div style="text-align: center;"><img id="modal-profile-img" class="modal-profile-img" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 8px;"><div class="profile-img-actions admin-only"><label for="profile-img-input" class="icon-btn-circle"><i class="fas fa-camera"></i></label><input type="file" id="profile-img-input" style="display: none;" accept="image/*"><button onclick="removeProfileImage()" class="icon-btn-circle danger"><i class="fas fa-trash-alt"></i></button></div></div><div style="flex:1; min-width: 200px;"><div class="form-group"><label class="form-label">First Name</label><input type="text" id="firstName" class="form-input" placeholder="First Name"></div><div class="form-group"><label class="form-label">Middle Name</label><input type="text" id="middleName" class="form-input" placeholder="Middle Name"></div><div class="form-group"><label class="form-label">Last Name</label><input type="text" id="lastName" class="form-input" placeholder="Last Name"></div><div class="form-group"><label class="form-label">Role / Job Title</label><input type="text" id="profile-role" class="form-input" placeholder="e.g., Java Full Stack Developer"></div><div class="form-group"><label class="form-label">Phone Number</label><input type="tel" id="phone" class="form-input" placeholder="+91 9490969431"></div><div class="form-group"><label class="form-label">Email Address</label><input type="email" id="email" class="form-input" placeholder="your.email@gmail.com"></div><div class="form-group"><label class="form-label">Professional Bio</label><textarea id="bio" class="form-textarea" rows="2" placeholder="Short bio..."></textarea></div><div class="form-group"><label class="form-label">GitHub Profile</label><input type="url" id="github-link" class="form-input" placeholder="https://github.com/"></div><div class="form-group"><label class="form-label">LinkedIn Profile</label><input type="url" id="linkedin-link" class="form-input" placeholder="https://linkedin.com/"></div></div></div><div class="form-actions"><button class="btn-secondary" onclick="closeProfileModal()">Cancel</button><button class="btn-primary" onclick="updateProfile()">Save Profile</button></div></div></div>
 <div id="about-modal" class="form-modal"><div class="form-modal-content"><h3>Edit About</h3><div class="form-group"><label class="form-label">Description</label><textarea id="about-textarea" class="form-textarea" rows="4"></textarea></div><div class="form-actions"><button class="btn-secondary" onclick="closeAboutModal()">Cancel</button><button class="btn-primary" onclick="saveAbout()">Save</button></div></div></div>
 <div id="skills-modal" class="form-modal"><div class="form-modal-content"><h3>Add Skills Category</h3><div class="form-group"><label class="form-label">Category Name</label><input type="text" id="category-input" class="form-input" placeholder="e.g., Backend"></div><div class="form-group"><label class="form-label">Skills (add one by one)</label><div class="skill-input-group" style="display: flex; gap: 10px;"><input type="text" id="new-skill-input" class="form-input" placeholder="e.g., Java"><button onclick="addSkillToTemp()" class="btn-primary" style="padding: 0 16px;">Add</button></div><div id="skills-preview" style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px;"></div></div><div class="form-actions"><button class="btn-secondary" onclick="closeSkillsModal()">Cancel</button><button class="btn-primary" onclick="saveCategory()">Add Category</button></div></div></div>
 <div id="exp-modal" class="form-modal"><div class="form-modal-content"><h3>Add Work Experience</h3><div class="form-group"><label class="form-label">Company Name</label><input type="text" id="exp-company" class="form-input"></div><div class="form-group"><label class="form-label">Role / Title</label><input type="text" id="exp-role" class="form-input"></div><div class="form-group"><label class="form-label">Location</label><input type="text" id="exp-location" class="form-input" placeholder="e.g., Hyderabad, TG"></div><div class="form-group"><label class="form-label">Start Date</label><input type="month" id="exp-start" class="form-input"></div><div class="form-group"><label class="form-label">End Date (or Present)</label><input type="month" id="exp-end" class="form-input"></div><div class="form-group"><label class="form-label">Description</label><textarea id="exp-desc" class="form-textarea" rows="4"></textarea></div><div class="form-actions"><button class="btn-secondary" onclick="closeExpModal()">Cancel</button><button class="btn-primary" onclick="saveExperience()">Add Experience</button></div></div></div>
@@ -811,20 +821,6 @@
         if (storedData && storedName && isAdmin) {
             updateResumeUI(storedData, storedName);
         }
-    }
-
-    // Export current state as HTML file
-    function exportHTML() {
-        if (!isAdmin) return;
-        let htmlContent = document.documentElement.outerHTML;
-        let blob = new Blob([htmlContent], {type: 'text/html'});
-        let a = document.createElement('a');
-        let url = URL.createObjectURL(blob);
-        a.href = url;
-        a.download = 'portfolio_export.html';
-        a.click();
-        URL.revokeObjectURL(url);
-        showToast("Portfolio exported as HTML file");
     }
 
     // Skills temp array and modals (unchanged functionality)
